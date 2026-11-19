@@ -701,3 +701,41 @@ body { background: var(--grad-light); background-attachment: fixed; }
 :root[data-theme="dark"] body { background: var(--grad-dark); background-attachment: fixed; }
 .section--alt, :root[data-theme="dark"] .section--alt { background: rgba(48, 92, 210, .06); }
 .section--alt, :root[data-theme="dark"] .section--alt { background: transparent; }
+
+/* Menu: same napisy z numerem. Po najechaniu napis się "przewija" w limonkę, a pod nim rysuje się linia. */
+.nav-roll::after { display: none; }
+@media (min-width: 861px) {
+  .site-nav ul { gap: clamp(18px, 2.4vw, 34px); }
+  .site-nav a, .site-nav a:hover, .site-nav a:focus-visible { position: relative; flex-direction: row; align-items: center; gap: 9px; min-width: 0; height: auto; padding: 10px 2px; border: 0; border-radius: 0; background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; transform: none; color: #fff; }
+  .site-nav a::before, .site-nav a:hover::before, .site-nav a:focus-visible::before { color: var(--lime); background: none; font-size: .66rem; letter-spacing: .1em; }
+  .nav-clip { display: block; overflow: hidden; height: 1.3em; line-height: 1.3em; }
+  .nav-roll { position: relative; display: block; transition: transform .45s cubic-bezier(.7, 0, .2, 1); }
+  .nav-roll::after { display: block; content: attr(data-t); position: absolute; left: 0; top: 100%; color: var(--lime); }
+  .site-nav a:hover .nav-roll, .site-nav a:focus-visible .nav-roll { transform: translateY(-100%); }
+  .site-nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 2px; border-radius: 2px; background: var(--lime); transform: scaleX(0); transform-origin: left; transition: transform .45s cubic-bezier(.7, 0, .2, 1); }
+  .site-nav a:hover::after, .site-nav a:focus-visible::after { transform: scaleX(1); }
+  .site-nav a:active { transform: scale(.96); }
+}
+@media (min-width: 861px) and (prefers-reduced-motion: reduce) { .nav-roll, .site-nav a::after { transition: none; } }
+
+/* Wyraźniejszy gradient: granat → głęboki błękit → morski odcień, z limonkową poświatą w rogu */
+:root {
+  --grad-dark: radial-gradient(ellipse 70% 70% at 100% 0%, rgba(187, 246, 0, .20), transparent 62%), radial-gradient(ellipse 60% 70% at 0% 100%, rgba(40, 90, 230, .35), transparent 65%), linear-gradient(135deg, #040915 0%, #09204f 40%, #0f3a7a 72%, #0b4a63 100%);
+  --grad-light: radial-gradient(ellipse 70% 70% at 100% 0%, rgba(187, 246, 0, .26), transparent 62%), radial-gradient(ellipse 60% 70% at 0% 100%, rgba(70, 120, 240, .18), transparent 65%), linear-gradient(135deg, #f1f4ee 0%, #e4ecee 55%, #d8e4ee 100%);
+}
+
+/* Ciemniejsza wersja: gradient widoczny, ale bez jaskrawego błękitu */
+:root {
+  --grad-dark: radial-gradient(ellipse 70% 70% at 100% 0%, rgba(187, 246, 0, .14), transparent 62%), radial-gradient(ellipse 60% 70% at 0% 100%, rgba(40, 90, 230, .20), transparent 65%), linear-gradient(135deg, #040915 0%, #071a42 45%, #0a2955 78%, #07303f 100%);
+}
+
+/* Ciemny motyw: linie i wiersze nie zlewają się z gradientem tła */
+:root[data-theme="dark"] { --line: rgba(255, 255, 255, .18); }
+:root[data-theme="dark"] .service { border-bottom-color: rgba(255, 255, 255, .18); }
+:root[data-theme="dark"] .service summary { border-radius: 10px; transition: background .25s ease; }
+:root[data-theme="dark"] .service summary:hover { background: rgba(255, 255, 255, .06); color: #fff; }
+:root[data-theme="dark"] .service[open] { background: rgba(255, 255, 255, .04); border-radius: 10px; }
+
+/* Karta audytu: własna, wyraźna powierzchnia zamiast tła takiego samego jak strona i twardego cienia */
+.audit { background: linear-gradient(160deg, #0f2048 0%, #08132e 100%); background-attachment: scroll; border: 1px solid rgba(255, 255, 255, .16); border-radius: 18px; box-shadow: 0 24px 60px rgba(0, 0, 0, .38), inset 0 1px 0 rgba(255, 255, 255, .1); }
+.audit .option__body { border-color: rgba(255, 255, 255, .22); border-radius: 12px; background: rgba(255, 255, 255, .03); }
