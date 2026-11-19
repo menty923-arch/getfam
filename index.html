@@ -17,7 +17,7 @@
       if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) h.classList.add('intro');
     })();
   </script>
-  <link rel="stylesheet" href="css/style.css?v=20261119d">
+  <link rel="stylesheet" href="css/style.css?v=20261119e">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -254,18 +254,33 @@
         <p class="eyebrow">Oferta</p>
         <h2 class="section-title" id="offer-title">Jak wygląda współpraca</h2>
 
-        <ol class="flow">
-          <li>
-            <h3>Formularz i wstępna analiza</h3>
-            <p>Zostawiasz profil i cel, a my przeglądamy Twój publiczny kanał.</p>
+        <ol class="steps3">
+          <li class="step">
+            <span class="step__num" aria-hidden="true">1</span>
+            <div class="step__card">
+              <span class="step__icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg></span>
+              <h3>Formularz i wstępna analiza</h3>
+              <p class="step__row"><b class="step__who step__who--you">Ty</b><span>zostawiasz profil i cel.</span></p>
+              <p class="step__row"><b class="step__who">My</b><span>przeglądamy Twój publiczny kanał.</span></p>
+            </div>
           </li>
-          <li>
-            <h3>Rozmowa, umowa i opiekun</h3>
-            <p>Ustalamy zakres pomocy, podpisujemy umowę i przydzielamy opiekuna.</p>
+          <li class="step">
+            <span class="step__num" aria-hidden="true">2</span>
+            <div class="step__card">
+              <span class="step__icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></span>
+              <h3>Rozmowa, umowa i opiekun</h3>
+              <p class="step__row"><b class="step__who step__who--you">Ty</b><span>opowiadasz o swoich celach i podpisujesz umowę.</span></p>
+              <p class="step__row"><b class="step__who">My</b><span>ustalamy zakres pomocy i przydzielamy opiekuna.</span></p>
+            </div>
           </li>
-          <li>
-            <h3>Plan publikacji i wyniki</h3>
-            <p>Opiekun układa plan, a potem razem omawiacie wyniki.</p>
+          <li class="step">
+            <span class="step__num" aria-hidden="true">3</span>
+            <div class="step__card">
+              <span class="step__icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20V4M4 20h16"/><path d="M8 16l4-5 3 3 5-7"/></svg></span>
+              <h3>Plan publikacji i wyniki</h3>
+              <p class="step__row"><b class="step__who step__who--you">Ty</b><span>publikujesz według planu i omawiasz wyniki.</span></p>
+              <p class="step__row"><b class="step__who">My</b><span>opiekun układa plan i pomaga czytać statystyki.</span></p>
+            </div>
           </li>
         </ol>
 
@@ -575,6 +590,6 @@
     </button>
   </div>
 
-  <script src="js/app.js?v=20261119d"></script>
+  <script src="js/app.js?v=20261119e"></script>
 </body>
 </html>
