@@ -6,55 +6,6 @@
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Gwiazdka w hero: kliknięcie odpala falę cząstek, pierścień i obrót gwiazdki. Przy ograniczonym ruchu tylko krótki rozbłysk. */
-  (function () {
-    var btn = $('#spark'), fx = $('#spark-fx');
-    if (!btn || !fx || !btn.animate) return;
-    var LIME = '#c8f31d', CREAM = '#fff3d6';
-    function rnd(a, b) { return a + Math.random() * (b - a); }
-    btn.addEventListener('click', function () {
-      var star = $('.spark__star', btn);
-      var h = fx.getBoundingClientRect(), b = btn.getBoundingClientRect();
-      var ox = b.left - h.left + b.width / 2, oy = b.top - h.top + b.height / 2;
-      if (reduceMotion) {
-        star.animate([{ filter: 'brightness(2)' }, { filter: 'none' }], { duration: 400 });
-        return;
-      }
-      btn.classList.remove('is-intro');
-      star.animate([
-        { transform: 'rotate(0) scale(1)' },
-        { transform: 'rotate(360deg) scale(2)', offset: 0.35 },
-        { transform: 'rotate(720deg) scale(1)' }
-      ], { duration: 950, easing: 'cubic-bezier(.2,.8,.2,1)' });
-      // pierścień
-      var ring = document.createElement('i');
-      ring.style.cssText = 'left:' + ox + 'px;top:' + oy + 'px;width:40px;height:40px;margin:-20px 0 0 -20px;border:3px solid ' + LIME + ';border-radius:50%';
-      fx.appendChild(ring);
-      ring.animate([{ transform: 'scale(.3)', opacity: 1 }, { transform: 'scale(' + (Math.max(h.width, 900) / 40) + ')', opacity: 0 }], { duration: 1000, easing: 'cubic-bezier(.1,.7,.2,1)' }).onfinish = function () { ring.remove(); };
-      // cząstki lecą we wszystkie strony, głównie w lewo, w stronę hasła
-      var n = h.width < 740 ? 26 : 56;
-      for (var k = 0; k < n; k++) {
-        var p = document.createElement('i');
-        var streak = Math.random() < 0.4;
-        var size = rnd(4, 11);
-        var ang = rnd(0, Math.PI * 2);
-        if (Math.random() < 0.55) ang = Math.PI + rnd(-1.1, 1.1);
-        var dist = rnd(180, Math.max(500, h.width * 0.85));
-        var dx = Math.cos(ang) * dist, dy = Math.sin(ang) * dist * 0.7;
-        var color = Math.random() < 0.72 ? LIME : CREAM;
-        p.style.cssText = 'left:' + ox + 'px;top:' + oy + 'px;width:' + (streak ? size * 3.5 : size) + 'px;height:' + size * (streak ? 0.55 : 1) + 'px;margin:-' + size / 2 + 'px 0 0 -' + size / 2 + 'px;background:' + color + ';box-shadow:0 0 10px ' + color + ';border-radius:' + (streak ? '4px' : '50%');
-        fx.appendChild(p);
-        var rot = streak ? ' rotate(' + ang + 'rad)' : '';
-        var spin = rnd(-200, 200);
-        p.animate([
-          { transform: 'translate(0,0)' + rot + ' scale(1)', opacity: 1 },
-          { transform: 'translate(' + dx * 0.7 + 'px,' + dy * 0.7 + 'px)' + rot + ' scale(1)', opacity: 1, offset: 0.6 },
-          { transform: 'translate(' + dx + 'px,' + (dy + rnd(20, 90)) + 'px)' + rot + ' scale(.2)', opacity: 0 }
-        ], { duration: rnd(650, 1300), delay: rnd(0, 120), easing: 'cubic-bezier(.1,.8,.25,1)', fill: 'backwards' }).onfinish = (function (el) { return function () { el.remove(); }; })(p);
-      }
-    });
-  })();
-
   function scrollToEl(el) {
     el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
   }
