@@ -610,9 +610,9 @@
 
 /* Czat-atrapa: na każdą wiadomość odpowiada „Przerwa techniczna”. Nic nie jest wysyłane. */
 (function () {
-  var toggle = document.getElementById('chat-toggle'), panel = document.getElementById('chat-panel');
+  var toggle = document.getElementById('gfbot-toggle'), panel = document.getElementById('gfbot-panel');
   if (!toggle || !panel) return;
-  var log = document.getElementById('chat-log'), form = document.getElementById('chat-form'), input = document.getElementById('chat-input');
+  var log = document.getElementById('gfbot-log'), form = document.getElementById('gfbot-form'), input = document.getElementById('gfbot-input');
   function setOpen(open) {
     panel.hidden = !open;
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -621,13 +621,13 @@
   }
   function add(text, me) {
     var p = document.createElement('p');
-    p.className = 'chat__msg chat__msg--' + (me ? 'me' : 'bot');
+    p.className = 'gfbot__msg gfbot__msg--' + (me ? 'me' : 'bot');
     p.textContent = text;
     log.appendChild(p);
     log.scrollTop = log.scrollHeight;
   }
   toggle.addEventListener('click', function () { setOpen(panel.hidden); });
-  document.getElementById('chat-close').addEventListener('click', function () { setOpen(false); });
+  document.getElementById('gfbot-close').addEventListener('click', function () { setOpen(false); });
   panel.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
   form.addEventListener('submit', function (e) {
     e.preventDefault();
