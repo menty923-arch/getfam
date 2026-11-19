@@ -521,3 +521,24 @@ h2.section-title { font-size: clamp(2rem, 4.2vw, 3.4rem); font-weight: 800; lett
 .chat__send { width: 42px; height: 42px; flex: none; border: 0; border-radius: 50%; background: var(--lime); color: #0b0b0b; font-size: 1.1rem; font-weight: 800; cursor: pointer; }
 @media (prefers-reduced-motion: no-preference) { .chat__panel:not([hidden]) { animation: chat-in .22s ease-out; } .chat__msg { animation: chat-in .22s ease-out; } }
 @keyframes chat-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Profil pod lupą: elementy klikane zamiast zbioru tekstów */
+.comment { border: 0; font: inherit; text-align: left; cursor: pointer; width: auto; transition: transform .2s, box-shadow .2s; }
+.comment:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0, 0, 0, .3); }
+.comment:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+.comment__body { display: block; flex: 1; }
+.comment__body span { display: block; line-height: 1.3; }
+.comment__go { flex: none; font-size: .8rem; font-weight: 800; background: var(--lime); color: #0b0b0b; padding: 5px 10px; border-radius: 999px; }
+.comment:not(.is-done) .comment__go { animation: nudge 1.6s ease-in-out infinite; }
+.comment.is-done .comment__go { display: none; }
+@keyframes nudge { 0%, 100% { transform: none; } 50% { transform: translateX(4px); } }
+@media (prefers-reduced-motion: reduce) { .comment:not(.is-done) .comment__go { animation: none; } }
+.rec__idle { margin: 0; font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-weight: 600; line-height: 1.25; color: var(--muted); }
+.rec__body:not([hidden]) { animation: chat-in .35s ease-out; }
+.picker__label { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; line-height: 1.3; max-width: 34em; margin: 0 0 20px; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 24px; }
+.chip { font: inherit; font-weight: 600; padding: 12px 22px; min-height: 48px; cursor: pointer; background: transparent; color: var(--ink); border: 2px solid var(--ink); border-radius: 999px; }
+.chip:hover { background: var(--paper-2); }
+.chip[aria-pressed="true"] { background: var(--sel-bg); border-color: var(--sel-bg); color: var(--sel-fg); }
+.picker .insight__tip { max-width: 640px; }
+.picker .insight__tip p { font-size: clamp(1.15rem, 2vw, 1.45rem); font-weight: 600; line-height: 1.3; }

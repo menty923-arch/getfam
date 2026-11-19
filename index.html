@@ -93,35 +93,28 @@
           <div class="case" id="case-audience">
             <figure class="case__shot">
               <img src="img/kadr-kanapka.svg" alt="Ciasny kadr gotowej kanapki z jednej rolki kulinarnej" width="540" height="960">
-              <div class="comment pop-comment">
+              <button class="comment" type="button" id="comment-btn" aria-expanded="false" aria-controls="rec-box">
                 <span class="comment__avatar" aria-hidden="true"></span>
-                <div>
-                  <p class="comment__who">Komentarz widza</p>
-                  <p class="comment__text">A ile wychodzi za porcję?</p>
-                </div>
-              </div>
+                <span class="comment__body">
+                  <span class="comment__who">Komentarz widza</span>
+                  <span class="comment__text">A ile wychodzi za porcję?</span>
+                </span>
+                <span class="comment__go" aria-hidden="true">Kliknij ↗</span>
+              </button>
             </figure>
-            <div class="case__rec pop-rec">
-              <p class="rec__label">Rekomendacja opiekuna</p>
-              <p class="rec__text">Zrób serię „Obiady do 15 zł”. W pierwszym kadrze pokaż danie i cenę porcji.</p>
-              <p class="rec__measure">Po trzech odcinkach porównaj liczbę zapisów na 1000 wyświetleń.</p>
+            <div class="case__rec" id="rec-box" aria-live="polite">
+              <p class="rec__idle">Kliknij komentarz widza, żeby zobaczyć, co poradzi opiekun.</p>
+              <div class="rec__body" hidden>
+                <p class="rec__label">Rekomendacja opiekuna</p>
+                <p class="rec__text">Zrób serię „Obiady do 15 zł”. W pierwszym kadrze pokaż danie i cenę porcji.</p>
+                <p class="rec__measure">Po trzech odcinkach porównaj liczbę zapisów na 1000 wyświetleń.</p>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="panel" role="tabpanel" id="panel-content" aria-labelledby="tab-content" tabindex="0" hidden>
           <h3 class="panel__q">Jak zacząć rolkę, żeby widz został po 3 sekundach?</h3>
-          <div class="insight">
-            <div>
-              <p class="insight__label">Obserwacja</p>
-              <blockquote>Gotowe danie pojawia się w rolce dopiero w 8. sekundzie.</blockquote>
-            </div>
-            <div class="insight__tip">
-              <p class="insight__label">Rada opiekuna</p>
-              <p>Przenieś ujęcie przekrojenia z 0:08 na 0:00, a składniki pokaż zaraz potem.</p>
-            </div>
-          </div>
-
           <div class="clip" id="clip" data-view="before" data-shot="a" data-result="off">
             <div class="clip__frame" id="clip-frame" role="img" aria-label="Kadr otwierający: składniki rozłożone na blacie">
               <img class="shot shot--a" src="img/kadr-skladniki.svg" alt="" width="540" height="960">
@@ -135,15 +128,6 @@
               </div>
               <p class="clip__caption" id="clip-caption" aria-live="polite">Gotowe danie pojawia się dopiero w 8. sekundzie.</p>
 
-              <div class="timeline" aria-hidden="true">
-                <div class="timeline__track">
-                  <div class="seg seg--cut"><img src="img/kadr-kanapka.svg" alt=""><span>Przekrojenie</span></div>
-                  <div class="seg seg--ing"><img src="img/kadr-skladniki.svg" alt=""><span>Składniki</span></div>
-                  <div class="seg seg--recipe"><span>Przepis</span></div>
-                </div>
-                <div class="timeline__ticks"><span>0:00</span><span>0:08</span><span>0:15</span></div>
-              </div>
-
               <figure class="retention">
                 <figcaption>Ile osób zostaje po 3 sekundach</figcaption>
                 <div class="bar-row"><span>Pierwsza wersja</span><div class="bar"><i style="--w:41%"></i></div><b>41%</b></div>
@@ -155,17 +139,16 @@
 
         <div class="panel" role="tabpanel" id="panel-collab" aria-labelledby="tab-collab" tabindex="0" hidden>
           <h3 class="panel__q">Jaką markę zaprosić do profilu o niedrogich obiadach?</h3>
-          <div class="insight">
-            <div>
-              <p class="insight__label">Obserwacja</p>
-              <blockquote>Twoja społeczność szuka prostych i niedrogich składników.</blockquote>
+          <div class="picker">
+            <p class="picker__label" id="picker-label">Twoi widzowie lubią proste, niedrogie składniki. Wybierz produkt, który marka mogłaby u Ciebie pokazać:</p>
+            <div class="chips" role="group" aria-labelledby="picker-label">
+              <button class="chip" type="button" data-pick="makaron" aria-pressed="false">Makaron</button>
+              <button class="chip" type="button" data-pick="ryz" aria-pressed="false">Ryż</button>
+              <button class="chip" type="button" data-pick="pomidory" aria-pressed="false">Pomidory w puszce</button>
             </div>
-            <div class="insight__tip">
-              <p class="insight__label">Rada opiekuna</p>
-              <p>Zaproponuj marce spożywczej odcinek z jednym produktem użytym w trzech przepisach.</p>
-            </div>
+            <div class="insight__tip" id="pick-out" aria-live="polite"><p>Wybierz produkt, a pokażemy pomysł na współpracę.</p></div>
           </div>
-        </div>
+          </div>
       </div>
     </section>
 

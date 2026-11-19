@@ -94,19 +94,39 @@
     }
   }
 
-  /* ---------- Przykład: komentarz, a chwilę później rekomendacja (raz, przy wejściu sekcji) ---------- */
-  var caseEl = $('#case-audience');
-  var profileSec = $('#rolka');
-  if (caseEl && profileSec) {
-    var reveal = function () { caseEl.classList.add('is-in'); };
-    if (reduceMotion || !('IntersectionObserver' in window)) {
-      reveal();
-    } else {
-      var revealObs = new IntersectionObserver(function (entries) {
-        if (entries.some(function (e) { return e.isIntersecting; })) { reveal(); revealObs.disconnect(); }
-      }, { threshold: 0.35 });
-      revealObs.observe(caseEl);
-    }
+  /* ---------- Przykład: kliknięcie komentarza pokazuje radę opiekuna ---------- */
+  var commentBtn = $('#comment-btn');
+  if (commentBtn) {
+    commentBtn.addEventListener('click', function () {
+      var box = $('#rec-box');
+      var idle = $('.rec__idle', box), body = $('.rec__body', box);
+      var open = body.hidden;
+      body.hidden = !open;
+      idle.hidden = open;
+      commentBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      commentBtn.classList.toggle('is-done', open);
+      box.classList.toggle('is-open', open);
+    });
+  }
+
+  /* ---------- Współprace: wybór produktu ---------- */
+  var PICKS = {
+    makaron: 'Odcinek „Makaron na trzy sposoby”: jeden produkt, trzy przepisy poniżej 10 zł za porcję.',
+    ryz: 'Seria „Ryż na cały tydzień”: pięć obiadów z jednego opakowania i cena porcji w pierwszym kadrze.',
+    pomidory: 'Rolka „Jedna puszka, trzy dania”: sos, zupa i shakshuka, z kosztem każdego dania na ekranie.'
+  };
+  var pickBtns = $$('.chip');
+  if (pickBtns.length) {
+    pickBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        pickBtns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        var out = $('#pick-out');
+        out.innerHTML = '';
+        var p = document.createElement('p');
+        p.textContent = PICKS[b.getAttribute('data-pick')];
+        out.appendChild(p);
+      });
+    });
   }
 
   /* ---------- Motyw jasny / ciemny ---------- */
