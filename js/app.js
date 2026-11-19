@@ -198,7 +198,7 @@
       b.addEventListener('click', function () {
         chips.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
         out.innerHTML = '';
-        [['pick-label', 'Pomysł opiekuna'], ['pick-idea', b.getAttribute('data-idea')], ['pick-why', 'Dlaczego pasuje: ' + b.getAttribute('data-why')]].forEach(function (r) {
+        [['pick-label', 'Pomysł opiekuna na film'], ['pick-idea', b.getAttribute('data-idea')], ['pick-why', 'Dlaczego to działa: ' + b.getAttribute('data-why')]].forEach(function (r) {
           var p = document.createElement('p');
           p.className = r[0];
           p.textContent = r[1];
