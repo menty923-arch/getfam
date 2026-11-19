@@ -881,3 +881,18 @@ img, svg, picture { -webkit-user-drag: none; user-drag: none; }
 .carousel__dots { margin-top: 2px; padding-bottom: 4px; }
 .svc-card { box-shadow: 0 10px 24px rgba(14, 13, 11, .14); }
 .svc-card:hover { box-shadow: 0 14px 30px rgba(14, 13, 11, .2); }
+
+/* Formularz: spokojniejszy, zaokrąglony, cienkie ramki zamiast grubych białych kresek */
+:root { --field-line: #b3afa0; --ring: var(--ink); }
+:root[data-theme="dark"] { --field-line: rgba(255, 255, 255, .26); --ring: var(--lime); }
+.form-card { border: 1px solid var(--line); border-radius: 22px; padding: clamp(22px, 3vw, 36px); box-shadow: 0 18px 44px rgba(14, 13, 11, .12); }
+.segmented { gap: 4px; padding: 4px; border: 1px solid var(--field-line); border-radius: 16px; overflow: visible; }
+.segmented span { border-radius: 12px; padding: 12px 8px; transition: background .25s ease, color .25s ease; }
+.segmented input:focus-visible + span { outline: 2px solid var(--ring); outline-offset: 2px; box-shadow: none; }
+.field input[type="text"], .field input[type="email"], .field select, .field textarea { border: 1px solid var(--field-line); border-radius: 12px; padding: 13px 16px; transition: border-color .2s ease, box-shadow .2s ease; }
+.field input[type="text"]:not([aria-invalid="true"]):focus, .field input[type="email"]:not([aria-invalid="true"]):focus, .field select:focus, .field textarea:not([aria-invalid="true"]):focus { border-color: var(--ring); }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 35%, transparent); }
+.field label { font-size: .95rem; }
+.check input { border-radius: 6px; accent-color: var(--lime); }
+:root:not([data-theme="dark"]) .check input { accent-color: var(--ink); }
+.form-card .btn { border-radius: 12px; }
