@@ -58,6 +58,11 @@
         <div class="shaft" id="shaft"></div>
       </div>
 
+      <div class="spark" id="spark" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        <svg class="spark__star" viewBox="0 0 24 24" focusable="false"><path d="M12 0c.8 7 5 11.2 12 12-7 .8-11.2 5-12 12-.8-7-5-11.2-12-12 7-.8 11.2-5 12-12z"/></svg>
+      </div>
+
       <div class="container hero__inner">
         <div class="hero__copy">
           <p class="eyebrow">Agencja dla twórców</p>
@@ -317,8 +322,9 @@
             </ol>
 
             <div class="brand-list">
+              <p class="fine">Przykładowe marki z biznesplanu</p>
               <p class="names">CeraVe · War Thunder · Lipton · G2A · KFC · InPost · Shein · Temu · Zalando</p>
-              <p class="fine">Nasi partnerzy: marki, z którymi współpracuje GETFAM.</p>
+              <p class="fine">Przykłady z założeń projektu, a nie lista zawartych współprac.</p>
             </div>
           </div>
 
@@ -343,6 +349,7 @@
                 <tr><th scope="row">Źródła</th><td>Wideo i wyszukiwarka</td><td>Skąd widzowie trafiają na treści</td></tr>
               </tbody>
             </table>
+            <p class="why"><strong>Dlaczego taki twórca?</strong> Gra jest dla młodych graczy w Polsce, a oni oglądają filmy o grach na YouTube i TikToku. Twórca gamingowy z odbiorcami w tym wieku i z Polski dotrze do właściwych osób, a nie tylko do dużej liczby widzów.</p>
             <p class="match-note">Ostateczne dopasowanie wymaga statystyk udostępnionych przez twórcę.</p>
             <button class="btn btn--dark" type="button" id="brief-cta">Zgłoś kampanię</button>
           </article>
@@ -355,9 +362,8 @@
       <div class="container contact-grid">
         <div>
           <p class="eyebrow">Kontakt</p>
-          <h2 class="section-title" id="contact-title">Zostaw zgłoszenie</h2>
-          <p class="lead">Wybierz, kim jesteś. Odpowiemy na podane dane kontaktowe i umówimy rozmowę.</p>
-          <p class="muted">Formularz działa w trybie demonstracyjnym: nic nie jest wysyłane ani zapisywane.</p>
+          <h2 class="section-title" id="contact-title">Przygotuj zgłoszenie</h2>
+          <p class="lead">Wybierz swoją rolę i sprawdź, jak wygląda zgłoszenie do GETFAM.</p>
         </div>
 
         <div class="form-card">
@@ -429,7 +435,8 @@
               <p class="field__error" id="consent-error" hidden></p>
             </div>
 
-            <button class="btn btn--dark" type="submit">Wyślij zgłoszenie</button>
+            <button class="btn btn--dark" type="submit">Zobacz podsumowanie</button>
+            <p class="muted form-note">Tryb demonstracyjny: dane nie są wysyłane ani zapisywane.</p>
           </form>
 
           <div class="summary" id="summary" hidden>
