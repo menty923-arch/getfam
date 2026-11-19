@@ -108,6 +108,35 @@
     }
   }
 
+  /* ---------- Delikatne wejście elementów przy przewijaniu (bez ruchu, gdy użytkownik go ogranicza) ---------- */
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    var GROUPS = [
+      ['.section .eyebrow, .section .section-title, .section .lead, .section .muted:not(.form-note), .profile__head, .examples', 0],
+      ['.services-title', 0],
+      ['.services .service', 1],
+      ['.steps-list li', 1],
+      ['.brief, .brand-list', 1],
+      ['.audit', 0],
+      ['.contact-grid > div:first-child, .form-card', 1],
+      ['.page-hero .container > *', 1],
+      ['.doc-section .doc-grid, .doc-section > h2, .doc-section .box, .data-table', 1],
+      ['.footer-grid > div, .footer-note', 1]
+    ];
+    var rvObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); rvObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    GROUPS.forEach(function (g) {
+      $$(g[0]).forEach(function (el) {
+        if (el.closest('.hero') || el.classList.contains('rv')) return;
+        el.classList.add('rv');
+        if (g[1]) el.style.setProperty('--rv-d', Math.min(Array.prototype.indexOf.call(el.parentNode.children, el), 5) * 70 + 'ms');
+        rvObs.observe(el);
+      });
+    });
+  }
+
   /* ---------- Motyw jasny / ciemny ---------- */
   var themeBtn = $('#theme-toggle');
   if (themeBtn) {
