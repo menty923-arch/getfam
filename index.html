@@ -17,7 +17,7 @@
       if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) h.classList.add('intro');
     })();
   </script>
-  <link rel="stylesheet" href="css/style.css?v=20261119b">
+  <link rel="stylesheet" href="css/style.css?v=20261119d">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -79,85 +79,171 @@
       <div class="container">
         <div class="profile__head">
           <h2 class="profile__title" id="profile-title">Twój profil pod lupą</h2>
-          <span class="profile__tag">Przykład · profil kulinarny</span>
+          <span class="profile__tag">Dwa przykłady</span>
         </div>
 
-        <div class="tabs" role="tablist" aria-label="Obszar decyzji">
-          <button class="tab" role="tab" type="button" id="tab-audience" aria-selected="true" aria-controls="panel-audience">Odbiorcy</button>
-          <button class="tab" role="tab" type="button" id="tab-content" aria-selected="false" aria-controls="panel-content" tabindex="-1">Treści</button>
-          <button class="tab" role="tab" type="button" id="tab-collab" aria-selected="false" aria-controls="panel-collab" tabindex="-1">Współprace</button>
+        <div class="examples" role="group" aria-label="Wybierz przykład profilu">
+          <button class="chip" type="button" data-ex="food" aria-pressed="true">Profil kulinarny</button>
+          <button class="chip" type="button" data-ex="game" aria-pressed="false">Profil gamingowy</button>
         </div>
 
-        <div class="panel" role="tabpanel" id="panel-audience" aria-labelledby="tab-audience" tabindex="0">
-          <h3 class="panel__q">Co nagrać, kiedy widzowie pytają o cenę porcji?</h3>
-          <div class="case" id="case-audience">
-            <figure class="case__shot">
-              <img src="img/kadr-kanapka.svg" alt="Ciasny kadr gotowej kanapki z jednej rolki kulinarnej" width="540" height="960">
-              <button class="comment" type="button" id="comment-btn" aria-expanded="false" aria-controls="rec-box">
-                <span class="comment__avatar" aria-hidden="true"></span>
-                <span class="comment__body">
-                  <span class="comment__who">Komentarz widza</span>
-                  <span class="comment__text">A ile wychodzi za porcję?</span>
-                </span>
-                <span class="comment__go" aria-hidden="true">Kliknij ↗</span>
-              </button>
-            </figure>
-            <div class="case__rec" id="rec-box" aria-live="polite">
-              <p class="rec__idle">Kliknij komentarz widza, żeby zobaczyć, co poradzi opiekun.</p>
-              <div class="rec__body" hidden>
-                <p class="rec__label">Rekomendacja opiekuna</p>
-                <p class="rec__text">Zrób serię „Obiady do 15 zł”. W pierwszym kadrze pokaż danie i cenę porcji.</p>
-                <p class="rec__measure">Po trzech odcinkach porównaj liczbę zapisów na 1000 wyświetleń.</p>
-              </div>
-            </div>
+        <div class="example" id="ex-food">
+          <div class="tabs" role="tablist" aria-label="Obszar decyzji">
+            <button class="tab" role="tab" type="button" id="food-tab-audience" aria-selected="true" aria-controls="food-panel-audience">Odbiorcy</button>
+            <button class="tab" role="tab" type="button" id="food-tab-content" aria-selected="false" aria-controls="food-panel-content" tabindex="-1">Treści</button>
+            <button class="tab" role="tab" type="button" id="food-tab-collab" aria-selected="false" aria-controls="food-panel-collab" tabindex="-1">Współprace</button>
           </div>
-        </div>
 
-        <div class="panel" role="tabpanel" id="panel-content" aria-labelledby="tab-content" tabindex="0" hidden>
-          <h3 class="panel__q">Jak zacząć rolkę, żeby widz został po 3 sekundach?</h3>
-          <div class="clip" id="clip" data-view="before" data-shot="a" data-result="off">
-            <div class="clip__frame" id="clip-frame" role="img" aria-label="Kadr otwierający: składniki rozłożone na blacie">
-              <img class="shot shot--a" src="img/kadr-skladniki.svg" alt="" width="540" height="960">
-              <img class="shot shot--b" src="img/kadr-kanapka.svg" alt="" width="540" height="960">
-              <span class="clip__time" id="clip-time" aria-hidden="true">0:00</span>
-            </div>
-            <div class="clip__side">
-              <div class="switch" role="group" aria-label="Wersja rolki">
-                <button type="button" id="sw-before" data-view="before" aria-pressed="true">Pierwsza wersja</button>
-                <button type="button" id="sw-after" data-view="after" aria-pressed="false">Po przesunięciu</button>
-              </div>
-              <p class="clip__caption" id="clip-caption" aria-live="polite">Gotowe danie pojawia się dopiero w 8. sekundzie.</p>
-
-              <div class="timeline" aria-hidden="true">
-                <div class="timeline__track">
-                  <div class="seg seg--cut"><img src="img/kadr-kanapka.svg" alt=""><span>Przekrojenie</span></div>
-                  <div class="seg seg--ing"><img src="img/kadr-skladniki.svg" alt=""><span>Składniki</span></div>
-                  <div class="seg seg--recipe"><span>Przepis</span></div>
-                </div>
-                <div class="timeline__ticks"><span>0:00</span><span>0:08</span><span>0:15</span></div>
-              </div>
-
-              <figure class="retention">
-                <figcaption>Ile osób zostaje po 3 sekundach</figcaption>
-                <div class="bar-row"><span>Pierwsza wersja</span><div class="bar"><i style="--w:41%"></i></div><b>41%</b></div>
-                <div class="bar-row"><span>Po przesunięciu</span><div class="bar bar--after"><i style="--w:63%"></i></div><b>63%</b></div>
+          <div class="panel" role="tabpanel" id="food-panel-audience" aria-labelledby="food-tab-audience" tabindex="0">
+            <h3 class="panel__q">Co nagrać, kiedy widzowie pytają o cenę porcji?</h3>
+            <div class="case">
+              <figure class="case__shot">
+                <img src="img/kadr-kanapka.svg" alt="Ciasny kadr gotowej kanapki z jednej rolki kulinarnej" width="540" height="960">
+                <button class="comment" type="button" aria-expanded="false">
+                  <span class="comment__avatar" aria-hidden="true"></span>
+                  <span class="comment__body">
+                    <span class="comment__who">Komentarz widza</span>
+                    <span class="comment__text">A ile wychodzi za porcję?</span>
+                  </span>
+                  <span class="comment__go" aria-hidden="true">Kliknij ↗</span>
+                </button>
               </figure>
+              <div class="case__rec" aria-live="polite">
+                <p class="rec__idle">Kliknij komentarz widza, żeby zobaczyć, co poradzi opiekun.</p>
+                <div class="rec__body" hidden>
+                  <p class="rec__label">Rekomendacja opiekuna</p>
+                  <p class="rec__text">Zrób serię „Obiady do 15 zł”. W pierwszym kadrze pokaż danie i cenę porcji.</p>
+                  <p class="rec__measure">Po trzech odcinkach porównaj liczbę zapisów na 1000 wyświetleń.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" role="tabpanel" id="food-panel-content" aria-labelledby="food-tab-content" tabindex="0" hidden>
+            <h3 class="panel__q">Jak zacząć rolkę, żeby widz został po 3 sekundach?</h3>
+            <div class="clip" data-view="before" data-shot="a" data-result="off" data-cap-before="Gotowe danie pojawia się dopiero w 8. sekundzie." data-cap-after="Rolka zaczyna się od przekrojonego dania, a składniki wracają zaraz potem." data-label-before="Kadr otwierający: składniki rozłożone na blacie" data-label-after="Nowy kadr otwierający: przekrojone danie">
+              <div class="clip__frame" role="img" aria-label="Kadr otwierający: składniki rozłożone na blacie">
+                <img class="shot shot--a" src="img/kadr-skladniki.svg" alt="" width="540" height="960">
+                <img class="shot shot--b" src="img/kadr-kanapka.svg" alt="" width="540" height="960">
+                <span class="clip__time" aria-hidden="true">0:00</span>
+              </div>
+              <div class="clip__side">
+                <div class="switch" role="group" aria-label="Wersja rolki">
+                  <button type="button" data-view="before" aria-pressed="true">Pierwsza wersja</button>
+                  <button type="button" data-view="after" aria-pressed="false">Po przesunięciu</button>
+                </div>
+                <p class="clip__caption" aria-live="polite">Gotowe danie pojawia się dopiero w 8. sekundzie.</p>
+
+                <div class="timeline" aria-hidden="true">
+                  <div class="timeline__track">
+                    <div class="seg seg--cut"><img src="img/kadr-kanapka.svg" alt=""><span>Przekrojenie</span></div>
+                    <div class="seg seg--ing"><img src="img/kadr-skladniki.svg" alt=""><span>Składniki</span></div>
+                    <div class="seg seg--recipe"><span>Przepis</span></div>
+                  </div>
+                  <div class="timeline__ticks"><span>0:00</span><span>0:08</span><span>0:15</span></div>
+                </div>
+
+                <figure class="retention">
+                  <figcaption>Ile osób zostaje po 3 sekundach</figcaption>
+                  <div class="bar-row"><span>Pierwsza wersja</span><div class="bar"><i style="--w:41%"></i></div><b>41%</b></div>
+                  <div class="bar-row"><span>Po przesunięciu</span><div class="bar bar--after"><i style="--w:63%"></i></div><b>63%</b></div>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel" role="tabpanel" id="food-panel-collab" aria-labelledby="food-tab-collab" tabindex="0" hidden>
+            <h3 class="panel__q">Marka chce reklamy u Ciebie. Co jej zaproponować?</h3>
+            <div class="picker">
+              <p class="picker__label" id="food-picker-label">Współpraca to płatna reklama marki w Twoich filmach. Opiekun pomaga wymyślić ją tak, żeby pasowała do widzów. Wybierz, co marka chce promować:</p>
+              <div class="chips" role="group" aria-labelledby="food-picker-label">
+                <button class="chip" type="button" data-pick="makaron" data-idea="Odcinek „Makaron na trzy sposoby”: jeden produkt, trzy przepisy poniżej 10 zł za porcję." data-why="Twoi widzowie pytają o cenę porcji, więc reklama pokazuje to, czego i tak szukają." aria-pressed="false">Makaron</button>
+                <button class="chip" type="button" data-pick="ryz" data-idea="Seria „Ryż na cały tydzień”: pięć obiadów z jednego opakowania, z ceną porcji w pierwszym kadrze." data-why="To rozwija Twój pomysł na tanie obiady, więc reklama nie wygląda obco." aria-pressed="false">Ryż</button>
+                <button class="chip" type="button" data-pick="pomidory" data-idea="Rolka „Jedna puszka, trzy dania”: sos, zupa i shakshuka, z kosztem każdego dania na ekranie." data-why="Widzowie dostają konkretny przepis, a marka jest w nim naturalnie." aria-pressed="false">Pomidory w puszce</button>
+              </div>
+              <div class="insight__tip pick-out" aria-live="polite"><p class="pick-hint">Wybierz jedną z opcji powyżej.</p></div>
             </div>
           </div>
         </div>
 
-        <div class="panel" role="tabpanel" id="panel-collab" aria-labelledby="tab-collab" tabindex="0" hidden>
-          <h3 class="panel__q">Jaką markę zaprosić do profilu o niedrogich obiadach?</h3>
-          <div class="picker">
-            <p class="picker__label" id="picker-label">Twoi widzowie lubią proste, niedrogie składniki. Wybierz produkt, który marka mogłaby u Ciebie pokazać:</p>
-            <div class="chips" role="group" aria-labelledby="picker-label">
-              <button class="chip" type="button" data-pick="makaron" aria-pressed="false">Makaron</button>
-              <button class="chip" type="button" data-pick="ryz" aria-pressed="false">Ryż</button>
-              <button class="chip" type="button" data-pick="pomidory" aria-pressed="false">Pomidory w puszce</button>
+        <div class="example" id="ex-game" hidden>
+          <div class="tabs" role="tablist" aria-label="Obszar decyzji">
+            <button class="tab" role="tab" type="button" id="game-tab-audience" aria-selected="true" aria-controls="game-panel-audience">Odbiorcy</button>
+            <button class="tab" role="tab" type="button" id="game-tab-content" aria-selected="false" aria-controls="game-panel-content" tabindex="-1">Treści</button>
+            <button class="tab" role="tab" type="button" id="game-tab-collab" aria-selected="false" aria-controls="game-panel-collab" tabindex="-1">Współprace</button>
+          </div>
+
+          <div class="panel" role="tabpanel" id="game-panel-audience" aria-labelledby="game-tab-audience" tabindex="0">
+            <h3 class="panel__q">Co nagrać, kiedy widzowie pytają o Twoje ustawienia?</h3>
+            <div class="case">
+              <figure class="case__shot">
+                <img src="img/kadr-gra-akcja.svg" alt="Ujęcie z gry akcji: celownik na sylwetce przeciwnika, pasek zdrowia i amunicji" width="540" height="960">
+                <button class="comment" type="button" aria-expanded="false">
+                  <span class="comment__avatar" aria-hidden="true"></span>
+                  <span class="comment__body">
+                    <span class="comment__who">Komentarz widza</span>
+                    <span class="comment__text">Jakie masz ustawienia myszki?</span>
+                  </span>
+                  <span class="comment__go" aria-hidden="true">Kliknij ↗</span>
+                </button>
+              </figure>
+              <div class="case__rec" aria-live="polite">
+                <p class="rec__idle">Kliknij komentarz widza, żeby zobaczyć, co poradzi opiekun.</p>
+                <div class="rec__body" hidden>
+                  <p class="rec__label">Rekomendacja opiekuna</p>
+                  <p class="rec__text">Nagraj film „Moje ustawienia w 60 sekund”. Pokaż czułość i celownik na ekranie już w pierwszej sekundzie.</p>
+                  <p class="rec__measure">Po trzech filmach porównaj liczbę zapisów i udostępnień na 1000 wyświetleń.</p>
+                </div>
+              </div>
             </div>
-            <div class="insight__tip" id="pick-out" aria-live="polite"><p>Wybierz produkt, a pokażemy pomysł na współpracę.</p></div>
           </div>
+
+          <div class="panel" role="tabpanel" id="game-panel-content" aria-labelledby="game-tab-content" tabindex="0" hidden>
+            <h3 class="panel__q">Jak zacząć klip, żeby widz został po 3 sekundach?</h3>
+            <div class="clip" data-view="before" data-shot="a" data-result="off" data-cap-before="Najlepsza akcja zaczyna się dopiero w 8. sekundzie." data-cap-after="Klip zaczyna się od akcji, a wstęp i ładowanie gry znikają." data-label-before="Kadr otwierający: ekran ładowania gry" data-label-after="Nowy kadr otwierający: akcja z gry">
+              <div class="clip__frame" role="img" aria-label="Kadr otwierający: ekran ładowania gry">
+                <img class="shot shot--a" src="img/kadr-gra-wstep.svg" alt="" width="540" height="960">
+                <img class="shot shot--b" src="img/kadr-gra-akcja.svg" alt="" width="540" height="960">
+                <span class="clip__time" aria-hidden="true">0:00</span>
+              </div>
+              <div class="clip__side">
+                <div class="switch" role="group" aria-label="Wersja rolki">
+                  <button type="button" data-view="before" aria-pressed="true">Pierwsza wersja</button>
+                  <button type="button" data-view="after" aria-pressed="false">Po przesunięciu</button>
+                </div>
+                <p class="clip__caption" aria-live="polite">Najlepsza akcja zaczyna się dopiero w 8. sekundzie.</p>
+
+                <div class="timeline" aria-hidden="true">
+                  <div class="timeline__track">
+                    <div class="seg seg--cut"><img src="img/kadr-gra-akcja.svg" alt=""><span>Akcja</span></div>
+                    <div class="seg seg--ing"><img src="img/kadr-gra-wstep.svg" alt=""><span>Wstęp</span></div>
+                    <div class="seg seg--recipe"><span>Komentarz</span></div>
+                  </div>
+                  <div class="timeline__ticks"><span>0:00</span><span>0:08</span><span>0:15</span></div>
+                </div>
+
+                <figure class="retention">
+                  <figcaption>Ile osób zostaje po 3 sekundach</figcaption>
+                  <div class="bar-row"><span>Pierwsza wersja</span><div class="bar"><i style="--w:38%"></i></div><b>38%</b></div>
+                  <div class="bar-row"><span>Po przesunięciu</span><div class="bar bar--after"><i style="--w:59%"></i></div><b>59%</b></div>
+                </figure>
+              </div>
+            </div>
           </div>
+
+          <div class="panel" role="tabpanel" id="game-panel-collab" aria-labelledby="game-tab-collab" tabindex="0" hidden>
+            <h3 class="panel__q">Marka chce reklamy u Ciebie. Co jej zaproponować?</h3>
+            <div class="picker">
+              <p class="picker__label" id="game-picker-label">Współpraca to płatna reklama marki w Twoich filmach. Opiekun pomaga wymyślić ją tak, żeby pasowała do widzów. Wybierz, co marka chce promować:</p>
+              <div class="chips" role="group" aria-labelledby="game-picker-label">
+                <button class="chip" type="button" data-pick="sluchawki" data-idea="Film „Słychać wroga wcześniej?”: ta sama mapa, dwa zestawy słuchawek i porównanie wyników." data-why="Widzowie sami chcą wiedzieć, czy sprzęt daje przewagę, więc test ich interesuje." aria-pressed="false">Słuchawki</button>
+                <button class="chip" type="button" data-pick="fotel" data-idea="Seria „Sześć godzin w jednym fotelu”: maraton gry z notatką o komforcie po każdej godzinie." data-why="Twoi widzowie grają długo, więc komfort jest dla nich realnym tematem." aria-pressed="false">Fotel gamingowy</button>
+                <button class="chip" type="button" data-pick="klucze" data-idea="Premiera gry: pierwsze wrażenia na żywo i krótkie klipy z najlepszymi momentami." data-why="To zwykły format Twojego kanału, a marka dostaje zasięg przed premierą." aria-pressed="false">Nowa gra</button>
+              </div>
+              <div class="insight__tip pick-out" aria-live="polite"><p class="pick-hint">Wybierz jedną z opcji powyżej.</p></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -489,6 +575,6 @@
     </button>
   </div>
 
-  <script src="js/app.js?v=20261119b"></script>
+  <script src="js/app.js?v=20261119d"></script>
 </body>
 </html>

@@ -94,41 +94,6 @@
     }
   }
 
-  /* ---------- Przykład: kliknięcie komentarza pokazuje radę opiekuna ---------- */
-  var commentBtn = $('#comment-btn');
-  if (commentBtn) {
-    commentBtn.addEventListener('click', function () {
-      var box = $('#rec-box');
-      var idle = $('.rec__idle', box), body = $('.rec__body', box);
-      var open = body.hidden;
-      body.hidden = !open;
-      idle.hidden = open;
-      commentBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      commentBtn.classList.toggle('is-done', open);
-      box.classList.toggle('is-open', open);
-    });
-  }
-
-  /* ---------- Współprace: wybór produktu ---------- */
-  var PICKS = {
-    makaron: 'Odcinek „Makaron na trzy sposoby”: jeden produkt, trzy przepisy poniżej 10 zł za porcję.',
-    ryz: 'Seria „Ryż na cały tydzień”: pięć obiadów z jednego opakowania i cena porcji w pierwszym kadrze.',
-    pomidory: 'Rolka „Jedna puszka, trzy dania”: sos, zupa i shakshuka, z kosztem każdego dania na ekranie.'
-  };
-  var pickBtns = $$('.chip');
-  if (pickBtns.length) {
-    pickBtns.forEach(function (b) {
-      b.addEventListener('click', function () {
-        pickBtns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-        var out = $('#pick-out');
-        out.innerHTML = '';
-        var p = document.createElement('p');
-        p.textContent = PICKS[b.getAttribute('data-pick')];
-        out.appendChild(p);
-      });
-    });
-  }
-
   /* ---------- Motyw jasny / ciemny ---------- */
   var themeBtn = $('#theme-toggle');
   if (themeBtn) {
@@ -143,11 +108,14 @@
     });
   }
 
-  /* ---------- Twój profil pod lupą: zakładki ---------- */
-  var profileTabs = $$('.profile .tab');
-  if (profileTabs.length) {
+  /* ---------- Twój profil pod lupą: dwa przykłady (kulinarny i gamingowy), każdy z zakładkami ---------- */
+  var MOVE_MS = 620; // zgodnie z czasem przesuwania segmentów osi w CSS (.6 s)
+
+  function initExample(ex) {
+    // zakładki
+    var tabs = $$('.tab', ex);
     var setTab = function (idx, focus) {
-      profileTabs.forEach(function (t, i) {
+      tabs.forEach(function (t, i) {
         var on = i === idx;
         t.setAttribute('aria-selected', on ? 'true' : 'false');
         t.tabIndex = on ? 0 : -1;
@@ -155,59 +123,95 @@
         if (on && focus) t.focus();
       });
     };
-    profileTabs.forEach(function (t, i) {
+    tabs.forEach(function (t, i) {
       t.addEventListener('click', function () { setTab(i, false); });
       t.addEventListener('keydown', function (e) {
         var n = null;
-        if (e.key === 'ArrowRight') n = (i + 1) % profileTabs.length;
-        else if (e.key === 'ArrowLeft') n = (i - 1 + profileTabs.length) % profileTabs.length;
+        if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
         else if (e.key === 'Home') n = 0;
-        else if (e.key === 'End') n = profileTabs.length - 1;
+        else if (e.key === 'End') n = tabs.length - 1;
         if (n !== null) { e.preventDefault(); setTab(n, true); }
       });
     });
-  }
 
-  /* ---------- Treści: przesunięcie ujęcia z 0:08 na 0:00 ---------- */
-  var clip = $('#clip');
-  if (clip) {
-    var CLIP = {
-      before: { caption: 'Gotowe danie pojawia się dopiero w 8. sekundzie.', label: 'Kadr otwierający: składniki rozłożone na blacie' },
-      after: { caption: 'Rolka zaczyna się od przekrojonego dania, a składniki wracają zaraz potem.', label: 'Nowy kadr otwierający: przekrojone danie' }
-    };
-    var MOVE_MS = 620; // zgodnie z czasem przesuwania segmentów osi w CSS (.6 s)
-    var moveTimer = null;
-    var swBtns = $$('.switch button', clip.parentNode);
-    var finishAfter = function () {
-      moveTimer = null;
-      clip.setAttribute('data-shot', 'b');
-      clip.setAttribute('data-result', 'on');
-      $('#clip-time').textContent = '0:00';
-      $('#clip-frame').setAttribute('aria-label', CLIP.after.label);
-    };
-    var setClip = function (view) {
-      // Ostatnie kliknięcie wygrywa: unieważniamy opóźnioną zmianę podglądu.
-      clearTimeout(moveTimer);
-      moveTimer = null;
-      clip.setAttribute('data-view', view);
-      swBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-view') === view ? 'true' : 'false'); });
-      $('#clip-caption').textContent = CLIP[view].caption;
-      if (view === 'before') {
-        clip.setAttribute('data-shot', 'a');
-        clip.setAttribute('data-result', 'off');
-        $('#clip-time').textContent = '0:00';
-        $('#clip-frame').setAttribute('aria-label', CLIP.before.label);
-      } else if (reduceMotion) {
-        finishAfter();
-      } else {
-        clip.setAttribute('data-result', 'off');
-        moveTimer = setTimeout(finishAfter, MOVE_MS);
-      }
-    };
-    swBtns.forEach(function (b) {
-      b.addEventListener('click', function () { setClip(b.getAttribute('data-view')); });
+    // komentarz widza -> rada opiekuna
+    var commentBtn = $('.comment', ex), box = $('.case__rec', ex);
+    if (commentBtn && box) {
+      commentBtn.addEventListener('click', function () {
+        var idle = $('.rec__idle', box), body = $('.rec__body', box);
+        var open = body.hidden;
+        body.hidden = !open;
+        idle.hidden = open;
+        commentBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        commentBtn.classList.toggle('is-done', open);
+        box.classList.toggle('is-open', open);
+      });
+    }
+
+    // wybór produktu
+    var chips = $$('.picker .chip', ex), out = $('.pick-out', ex);
+    chips.forEach(function (b) {
+      b.addEventListener('click', function () {
+        chips.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        out.innerHTML = '';
+        [['pick-label', 'Pomysł opiekuna'], ['pick-idea', b.getAttribute('data-idea')], ['pick-why', 'Dlaczego pasuje: ' + b.getAttribute('data-why')]].forEach(function (r) {
+          var p = document.createElement('p');
+          p.className = r[0];
+          p.textContent = r[1];
+          out.appendChild(p);
+        });
+      });
     });
+
+    // przesunięcie ujęcia na początek
+    var clip = $('.clip', ex);
+    if (clip) {
+      var frame = $('.clip__frame', clip), time = $('.clip__time', clip), cap = $('.clip__caption', clip);
+      var swBtns = $$('.switch button', clip);
+      var moveTimer = null;
+      var finishAfter = function () {
+        moveTimer = null;
+        clip.setAttribute('data-shot', 'b');
+        clip.setAttribute('data-result', 'on');
+        time.textContent = '0:00';
+        frame.setAttribute('aria-label', clip.getAttribute('data-label-after'));
+      };
+      var setClip = function (view) {
+        // Ostatnie kliknięcie wygrywa: unieważniamy opóźnioną zmianę podglądu.
+        clearTimeout(moveTimer);
+        moveTimer = null;
+        clip.setAttribute('data-view', view);
+        swBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-view') === view ? 'true' : 'false'); });
+        cap.textContent = clip.getAttribute('data-cap-' + view);
+        if (view === 'before') {
+          clip.setAttribute('data-shot', 'a');
+          clip.setAttribute('data-result', 'off');
+          time.textContent = '0:00';
+          frame.setAttribute('aria-label', clip.getAttribute('data-label-before'));
+        } else if (reduceMotion) {
+          finishAfter();
+        } else {
+          clip.setAttribute('data-result', 'off');
+          moveTimer = setTimeout(finishAfter, MOVE_MS);
+        }
+      };
+      swBtns.forEach(function (b) {
+        b.addEventListener('click', function () { setClip(b.getAttribute('data-view')); });
+      });
+    }
   }
+  var examples = $$('.example');
+  examples.forEach(initExample);
+
+  // przełącznik przykładów
+  var exBtns = $$('.examples .chip');
+  exBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      exBtns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      examples.forEach(function (ex) { ex.hidden = ex.id !== 'ex-' + b.getAttribute('data-ex'); });
+    });
+  });
 
   /* ---------- Audyt profilu ---------- */
   var PLATFORMS = {
