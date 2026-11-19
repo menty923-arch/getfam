@@ -609,3 +609,13 @@ h2.section-title { font-size: clamp(2rem, 4.2vw, 3.4rem); font-weight: 800; lett
 .profile .case__rec { padding: clamp(20px, 2.4vw, 30px); }
 @media (min-width: 800px) { .profile .case { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; } }
 .profile .case__shot { aspect-ratio: 4 / 3; max-height: 440px; }
+
+/* Logo: po najechaniu gwiazdka wiruje i błyska, napis lekko się przesuwa, a pod nim rysuje się limonkowa linia */
+.logo { transition: transform .35s cubic-bezier(.2, .8, .2, 1); }
+.logo__star { transform-origin: 50% 50%; transition: transform .6s cubic-bezier(.3, 1.4, .4, 1), filter .3s; }
+.logo::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 3px; background: var(--lime); transform: scaleX(0); transform-origin: left; transition: transform .4s cubic-bezier(.2, .8, .2, 1); }
+.logo:hover, .logo:focus-visible { transform: translateX(3px) skewX(-4deg); }
+.logo:hover .logo__star, .logo:focus-visible .logo__star { transform: rotate(180deg) scale(1.45); filter: drop-shadow(0 0 8px rgba(200, 243, 29, .9)); }
+.logo:hover::after, .logo:focus-visible::after { transform: scaleX(1); }
+.logo:active { transform: scale(.96); }
+@media (prefers-reduced-motion: reduce) { .logo, .logo__star, .logo::after { transition: none; } .logo:hover, .logo:focus-visible { transform: none; } }
