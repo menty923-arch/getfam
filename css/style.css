@@ -754,3 +754,93 @@ body { background: var(--grad-light); background-attachment: fixed; }
 
 /* Jasny motyw: podkreślenie aktywnej zakładki w kolorze tekstu, bo limonka na jasnym tle jest słabo widoczna */
 :root:not([data-theme="dark"]) .profile .tab[aria-selected="true"] { border-color: var(--ink); }
+
+/* Za co odpowiada opiekun: karuzela kart przewijana palcem, myszką, strzałkami i klawiaturą */
+.carousel { position: relative; margin-top: 18px; }
+.carousel__track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 2px; padding: 6px 2px 22px; scrollbar-width: none; -webkit-overflow-scrolling: touch; cursor: grab; outline-offset: 4px; }
+.carousel__track::-webkit-scrollbar { display: none; }
+.carousel__track:focus-visible { outline: 3px solid var(--focus); border-radius: 18px; }
+.carousel__track.is-drag { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+.svc-card { flex: 0 0 min(430px, 84%); scroll-snap-align: start; display: flex; flex-direction: column; gap: 14px; padding: clamp(22px, 2.4vw, 30px); background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 14px 34px rgba(4, 9, 21, .12); transition: transform .3s cubic-bezier(.2, .8, .2, 1), box-shadow .3s; }
+.svc-card:hover { transform: translateY(-4px); box-shadow: 0 20px 44px rgba(4, 9, 21, .2); }
+.svc-card__top { display: flex; align-items: center; justify-content: space-between; }
+.svc-card__icon { display: grid; place-items: center; width: 50px; height: 50px; border-radius: 14px; background: var(--lime); }
+.svc-card__icon svg { width: 26px; height: 26px; fill: none; stroke: #040915; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.svc-card__num { font-family: var(--display); font-weight: 800; font-size: 1.1rem; color: var(--muted); letter-spacing: .06em; }
+.svc-card h4 { margin: 4px 0 0; font-size: clamp(1.35rem, 2.2vw, 1.7rem); font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; }
+.svc-card > p { margin: 0; color: var(--muted); line-height: 1.55; }
+.svc-card .example { margin: auto 0 0; }
+.carousel__nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.carousel__dots { display: flex; gap: 8px; }
+.carousel__dots i { display: block; width: 8px; height: 8px; border-radius: 99px; background: var(--line); transition: width .3s ease, background .3s ease; }
+.carousel__dots i.is-on { width: 28px; background: var(--lime); }
+.carousel__btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--ink); font-size: 1.2rem; cursor: pointer; transition: background .2s, border-color .2s, transform .2s, opacity .2s; }
+.carousel__btn:hover:not(:disabled) { background: var(--lime); border-color: var(--lime); color: #040915; transform: scale(1.06); }
+.carousel__btn:disabled { opacity: .35; cursor: default; }
+.carousel__btn:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+:root:not([data-theme="dark"]) .carousel__dots i.is-on { background: var(--ink); }
+@media (prefers-reduced-motion: reduce) { .svc-card, .carousel__dots i { transition: none; } .svc-card:hover { transform: none; } }
+
+/* Karuzela: strzałki przy lewej krawędzi, żeby nie wchodziły pod dymek czatu w prawym dolnym rogu */
+.carousel__nav { justify-content: flex-start; gap: 10px; }
+.carousel__btn[data-dir="-1"] { order: 1; }
+.carousel__btn[data-dir="1"] { order: 2; }
+.carousel__dots { order: 3; margin-left: 12px; }
+
+/* Karuzela w stylu coverflow: karta pośrodku jest powiększona, pozostałe mniejsze, rozmyte i przygaszone. Strzałki po bokach. */
+.carousel { --cw: min(440px, 72vw); }
+.carousel__stage { position: relative; }
+.carousel__track { padding: 30px calc(50% - var(--cw) / 2) 36px; scroll-snap-type: x mandatory; scroll-padding: 0; }
+.svc-card { flex: 0 0 var(--cw); scroll-snap-align: center; transform: scale(calc(1.07 - var(--d, 0) * .17)); filter: blur(calc(var(--d, 0) * 3.2px)); opacity: calc(1 - var(--d, 0) * .5); transition: box-shadow .3s; will-change: transform, filter, opacity; }
+.svc-card:hover { transform: scale(calc(1.07 - var(--d, 0) * .17)); box-shadow: 0 24px 56px rgba(4, 9, 21, .3); }
+.carousel__btn { position: absolute; top: 50%; z-index: 3; margin-top: -24px; background: rgba(4, 9, 21, .55); color: #fff; border-color: rgba(255, 255, 255, .25); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+:root:not([data-theme="dark"]) .carousel__btn { background: rgba(255, 255, 255, .8); color: var(--ink); border-color: var(--line); }
+.carousel__btn--prev { left: 0; }
+.carousel__btn--next { right: 0; }
+.carousel__btn[data-dir="-1"], .carousel__btn[data-dir="1"] { order: 0; }
+.carousel__dots { order: 0; margin: 0; justify-content: center; }
+@media (max-width: 640px) { .carousel__btn { display: none; } }
+@media (prefers-reduced-motion: reduce) { .svc-card, .svc-card:hover { transform: none; filter: none; opacity: 1; } }
+
+/* Karuzela: boki wygaszają się miękko zamiast być ucięte ostrą krawędzią */
+.carousel__track { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%); }
+@media (max-width: 640px) { .carousel__track { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); } }
+
+/* Porządki: mniej dekoracji, jedna duża rzecz na sekcję. Duże kontury cyfr zamiast ikon i kart, bez numerków, które nic nie liczą. */
+.steps3 { gap: clamp(24px, 3vw, 48px); }
+.step { display: block; }
+.step:not(:last-child)::after { display: none; }
+.step__num { display: block; width: auto; height: auto; border-radius: 0; background: none; box-shadow: none; font-size: clamp(4.5rem, 9vw, 8.5rem); line-height: .9; font-weight: 900; letter-spacing: -.05em; color: transparent; -webkit-text-stroke: 2px var(--ink); margin-bottom: 14px; transition: color .35s ease; }
+.step:hover .step__num { color: var(--lime); }
+.step__card, .step__card:hover { background: none; border: 0; border-top: 2px solid var(--ink); border-radius: 0; padding: 16px 0 0; box-shadow: none; transform: none; }
+.step__icon { display: none; }
+.step__row { grid-template-columns: 30px 1fr; }
+.step__who, .step__who--you { background: none; color: var(--ink); padding: 0; text-align: left; border-radius: 0; font-size: .7rem; letter-spacing: .1em; opacity: .55; }
+.step__who--you { opacity: 1; }
+.step__out { border-top: 0; padding-top: 18px; }
+.svc-card__top { display: none; }
+.svc-card h4 { font-size: clamp(1.7rem, 2.8vw, 2.3rem); margin-top: 0; }
+
+/* Menu: zamiast szkła i numerków limonkowy pasek wjeżdża spod napisu, a napis przewija się na ciemny. */
+@media (min-width: 861px) {
+  .site-nav ul { gap: 4px; }
+  .site-nav a, .site-nav a:hover, .site-nav a:focus-visible { padding: 9px 14px; border-radius: 4px; isolation: isolate; overflow: hidden; }
+  .site-nav a::before, .site-nav a:hover::before, .site-nav a:focus-visible::before { content: ""; position: absolute; inset: 0; z-index: -1; display: block; min-width: 0; height: auto; border-radius: 0; font-size: 0; background: var(--lime); transform: scaleY(0); transform-origin: bottom; transition: transform .4s cubic-bezier(.7, 0, .2, 1); }
+  .site-nav a:hover::before, .site-nav a:focus-visible::before { transform: scaleY(1); }
+  .site-nav a::after, .site-nav a:hover::after, .site-nav a:focus-visible::after { display: none; }
+  .nav-roll::after { color: #040915; }
+  .site-nav a:hover, .site-nav a:focus-visible { color: #fff; }
+}
+.step__card, .step__card:hover { height: auto; }
+.step__out { margin: 0; }
+
+/* Jasne tło: płaska, ciepła "brudna biel" zamiast białego z gradientem. Ciemne powierzchnie mają tylko bardzo spokojne przejście. */
+:root { --paper: #e9e6dd; --paper-2: #dfdbd0; --line: #c9c5b8; --muted: #57554d; --cream: #e2dfcf; --grad-light: none; }
+body { background: var(--paper); }
+.section--alt { background: var(--paper-2); }
+:root[data-theme="dark"] .section--alt { background: transparent; }
+:root { --grad-dark: linear-gradient(160deg, #040915 0%, #06102b 55%, #08163a 100%); }
+.site-header { background: linear-gradient(90deg, #040915 0%, #06102b 100%); }
+.hero { background: linear-gradient(160deg, #040915 0%, #06102b 100%); }
+:root[data-theme="dark"] { --line: rgba(255, 255, 255, .18); --paper: #070d1c; --paper-2: #0b1326; --cream: #15264b; --muted: #a9b2c4; }
+:root[data-theme="dark"] body { background: var(--grad-dark); background-attachment: fixed; }

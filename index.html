@@ -17,7 +17,7 @@
       if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) h.classList.add('intro');
     })();
   </script>
-  <link rel="stylesheet" href="css/style.css?v=20261120e">
+  <link rel="stylesheet" href="css/style.css?v=20261120m">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -256,7 +256,6 @@
           <li class="step">
             <span class="step__num" aria-hidden="true">1</span>
             <div class="step__card">
-              <span class="step__icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg></span>
               <h3>Formularz i wstępna analiza</h3>
               <p class="step__row"><b class="step__who step__who--you">Ty</b><span>zostawiasz profil i cel.</span></p>
               <p class="step__row"><b class="step__who">My</b><span>przeglądamy Twój publiczny kanał.</span></p>
@@ -266,7 +265,6 @@
           <li class="step">
             <span class="step__num" aria-hidden="true">2</span>
             <div class="step__card">
-              <span class="step__icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></span>
               <h3>Rozmowa, umowa i opiekun</h3>
               <p class="step__row"><b class="step__who step__who--you">Ty</b><span>opowiadasz o swoich celach i podpisujesz umowę.</span></p>
               <p class="step__row"><b class="step__who">My</b><span>ustalamy zakres pomocy i przydzielamy opiekuna.</span></p>
@@ -276,7 +274,6 @@
           <li class="step">
             <span class="step__num" aria-hidden="true">3</span>
             <div class="step__card">
-              <span class="step__icon"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20V4M4 20h16"/><path d="M8 16l4-5 3 3 5-7"/></svg></span>
               <h3>Plan publikacji i wyniki</h3>
               <p class="step__row"><b class="step__who step__who--you">Ty</b><span>publikujesz według planu i omawiasz wyniki.</span></p>
               <p class="step__row"><b class="step__who">My</b><span>opiekun układa plan i pomaga czytać statystyki.</span></p>
@@ -286,35 +283,35 @@
         </ol>
 
         <h3 class="services-title">Za co odpowiada opiekun</h3>
-        <div class="services">
-          <details class="service">
-            <summary>Analiza odbiorców</summary>
-            <div class="service__body">
+        <div class="carousel" id="services-car" role="region" aria-roledescription="karuzela" aria-label="Za co odpowiada opiekun">
+          <div class="carousel__stage">
+            <button class="carousel__btn carousel__btn--prev" type="button" data-dir="-1" aria-label="Poprzednia karta">←</button>
+            <div class="carousel__track" tabindex="0">
+            <article class="svc-card" role="group" aria-roledescription="slajd" aria-label="1 z 4">
+              <h4>Analiza odbiorców</h4>
               <p>Za Twoją zgodą korzystamy z danych o wieku i lokalizacji odbiorców, źródłach ruchu i wyświetleniach. Opiekun tłumaczy je prostym językiem.</p>
               <p class="example"><b>Przykład</b>Większość nowych widzów trafia do Ciebie z wyszukiwarki, a nie z polecanych? Kolejny film warto oprzeć na pytaniu, które ludzie wpisują w wyszukiwarkę.</p>
-            </div>
-          </details>
-          <details class="service">
-            <summary>Widoczność w Google</summary>
-            <div class="service__body">
+            </article>
+            <article class="svc-card" role="group" aria-roledescription="slajd" aria-label="2 z 4">
+              <h4>Widoczność w Google</h4>
               <p>Dbamy o SEO, czyli o to, żeby publiczne treści dało się znaleźć w Google. Tytuł i opis mówią wyszukiwarce, o czym jest materiał, więc pomagamy je pisać.</p>
               <p class="example"><b>Przykład</b>Film „Jak zacząć na TikToku: 5 pierwszych kroków” z opisem, który w pierwszych zdaniach powtarza to pytanie, ma większą szansę trafić do osoby, która wpisała je w Google.</p>
-            </div>
-          </details>
-          <details class="service">
-            <summary>Edycja publikacji</summary>
-            <div class="service__body">
+            </article>
+            <article class="svc-card" role="group" aria-roledescription="slajd" aria-label="3 z 4">
+              <h4>Edycja publikacji</h4>
               <p>W uzgodnionym zakresie pomagamy skracać materiały, dodawać napisy i poprawiać opisy. Decyzja o publikacji zawsze należy do Ciebie.</p>
               <p class="example"><b>Przykład</b>Wysyłasz surowy film. Dostajesz propozycję skrótu i napisów, a Ty akceptujesz ją albo wskazujesz poprawki.</p>
-            </div>
-          </details>
-          <details class="service">
-            <summary>Moderacja komentarzy</summary>
-            <div class="service__body">
+            </article>
+            <article class="svc-card" role="group" aria-roledescription="slajd" aria-label="4 z 4">
+              <h4>Moderacja komentarzy</h4>
               <p>Na Twoją prośbę ukrywamy spam i obraźliwe komentarze według zasad, które ustalisz z opiekunem. Działamy tylko w uzgodnionym zakresie.</p>
               <p class="example"><b>Przykład</b>Ustalasz, że ukrywamy linki reklamowe i wulgaryzmy. Pytania widzów zostawiamy Tobie albo oznaczamy do odpowiedzi.</p>
-            </div>
-          </details>
+            </article>
+          </div>
+            <button class="carousel__btn carousel__btn--next" type="button" data-dir="1" aria-label="Następna karta">→</button>
+          </div>
+          <div class="carousel__dots" aria-hidden="true"></div>
+        </div></details>
         </div>
       </div>
     </section>
@@ -591,6 +588,6 @@
     </button>
   </div>
 
-  <script src="js/app.js?v=20261120e"></script>
+  <script src="js/app.js?v=20261120m"></script>
 </body>
 </html>

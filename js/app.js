@@ -137,6 +137,61 @@
     });
   }
 
+  /* ---------- Karuzela: za co odpowiada opiekun ---------- */
+  var car = $('#services-car');
+  if (car) {
+    var track = $('.carousel__track', car), cards = $$('.svc-card', car);
+    var prevB = $('[data-dir="-1"]', car), nextB = $('[data-dir="1"]', car), dots = $('.carousel__dots', car);
+    cards.forEach(function () { dots.appendChild(document.createElement('i')); });
+    var dotEls = $$('i', dots);
+    var step = function () { return cards[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 20); };
+    var sync = function () {
+      var max = track.scrollWidth - track.clientWidth;
+      var idx = Math.min(cards.length - 1, Math.round(track.scrollLeft / step()));
+      if (track.scrollLeft >= max - 4) idx = cards.length - 1;
+      dotEls.forEach(function (d, i) { d.classList.toggle('is-on', i === idx); });
+      if (!reduceMotion) {
+        var s = step(), mid = track.scrollLeft + track.clientWidth / 2;
+        var first = cards[0].offsetLeft + cards[0].offsetWidth / 2;
+        cards.forEach(function (c) {
+          var dist = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid) / s;
+          c.style.setProperty('--d', Math.min(dist, 1.6).toFixed(3));
+        });
+      }
+      prevB.disabled = track.scrollLeft <= 4;
+      nextB.disabled = track.scrollLeft >= max - 4;
+    };
+    var go = function (dir) { track.scrollBy({ left: dir * step(), behavior: reduceMotion ? 'auto' : 'smooth' }); };
+    prevB.addEventListener('click', function () { go(-1); });
+    nextB.addEventListener('click', function () { go(1); });
+    track.addEventListener('scroll', function () { window.requestAnimationFrame(sync); }, { passive: true });
+    window.addEventListener('resize', sync);
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    });
+    // przeciąganie myszką
+    var drag = null;
+    track.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      drag = { x: e.clientX, left: track.scrollLeft, moved: false };
+    });
+    window.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var dx = e.clientX - drag.x;
+      if (Math.abs(dx) > 4) { drag.moved = true; track.classList.add('is-drag'); }
+      if (drag.moved) track.scrollLeft = drag.left - dx;
+    });
+    window.addEventListener('pointerup', function () {
+      if (!drag) return;
+      var moved = drag.moved;
+      drag = null;
+      track.classList.remove('is-drag');
+      if (moved) { var i = Math.round(track.scrollLeft / step()); track.scrollTo({ left: i * step(), behavior: reduceMotion ? 'auto' : 'smooth' }); }
+    });
+    sync();
+  }
+
   /* ---------- Motyw jasny / ciemny ---------- */
   var themeBtn = $('#theme-toggle');
   if (themeBtn) {
