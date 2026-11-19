@@ -740,3 +740,24 @@
     setTimeout(function () { add('Przerwa techniczna', false); }, 600);
   });
 })();
+
+/* Utrudnienie kopiowania i podglądu kodu. To tylko zabezpieczenie "na odczepnego": przeglądarka i tak oddaje kod stronie, więc osoba zdeterminowana je obejdzie.
+   Pola formularzy i czatu działają normalnie. */
+(function () {
+  'use strict';
+  var isField = function (t) { return t && t.closest && t.closest('input, textarea, select, [contenteditable="true"]'); };
+  document.addEventListener('contextmenu', function (e) { if (!isField(e.target)) e.preventDefault(); });
+  ['copy', 'cut', 'dragstart', 'selectstart'].forEach(function (ev) {
+    document.addEventListener(ev, function (e) { if (!isField(e.target)) e.preventDefault(); });
+  });
+  document.addEventListener('keydown', function (e) {
+    var k = (e.key || '').toLowerCase();
+    var ctrl = e.ctrlKey || e.metaKey;
+    var block =
+      e.key === 'F12' ||
+      (ctrl && e.shiftKey && (k === 'i' || k === 'j' || k === 'c' || k === 'k')) ||
+      (ctrl && (k === 'u' || k === 's')) ||
+      (ctrl && !isField(e.target) && (k === 'a' || k === 'c' || k === 'x'));
+    if (block) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
+})();

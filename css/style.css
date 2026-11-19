@@ -844,3 +844,40 @@ body { background: var(--paper); }
 .hero { background: linear-gradient(160deg, #0e0d0b 0%, #12110e 100%); }
 :root[data-theme="dark"] { --line: rgba(255, 255, 255, .18); --paper: #12110e; --paper-2: #191812; --cream: #24221a; --muted: #b8b5a8; }
 :root[data-theme="dark"] body { background: var(--grad-dark); background-attachment: fixed; }
+
+/* Dla marek: spokojniej. Kroki bez kółek, brief z jedną wyróżnioną myślą (uzasadnienie), większe nazwy marek. */
+.steps-list { gap: 0; margin-bottom: 8px; }
+.steps-list li { grid-template-columns: 44px 1fr; gap: 6px 10px; padding: 18px 0; border-top: 1px solid var(--line-dark); }
+.steps-list li:last-child { border-bottom: 1px solid var(--line-dark); }
+.steps-list li::before { width: auto; height: auto; border-radius: 0; background: none; color: var(--lime); font-size: 1.7rem; line-height: 1; place-items: start; }
+.steps-list h3 { font-size: 1.25rem; }
+.brand-list { border-top: 0; margin-top: 34px; padding-top: 0; }
+.brand-list .names { font-size: clamp(1.15rem, 1.8vw, 1.45rem); line-height: 1.7; color: rgba(255, 255, 255, .72); font-weight: 600; }
+.brand-list .fine:first-child { text-transform: uppercase; letter-spacing: .12em; font-size: .72rem; font-weight: 700; margin-bottom: 10px; }
+.brief h3 { font-size: clamp(1.9rem, 3vw, 2.4rem); letter-spacing: -.03em; margin-bottom: 18px; }
+.brief .why { margin: 4px 0 20px; padding: 14px 16px; background: #e4e1d2; border-left: 4px solid var(--lime); border-radius: 0 10px 10px 0; font-size: .98rem; line-height: 1.5; }
+.brief .why strong { display: block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
+.match caption { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.fit { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.fit li { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border: 1px solid #b9b5a6; border-radius: 999px; font-size: .86rem; font-weight: 600; }
+.fit li::before { content: "✓"; font-weight: 800; }
+
+/* Dla marek: kolumny równe od góry do dołu, a numer kroku w jednej linii z tytułem */
+@media (min-width: 960px) {
+  .brands-grid { align-items: stretch; }
+  .brands-grid > div:first-child { display: flex; flex-direction: column; justify-content: space-between; }
+  .brand-list { margin-top: 0; }
+}
+.steps-list li { align-items: first baseline; }
+.steps-list li::before { line-height: 1; }
+
+/* Utrudnienie kopiowania: tekst na stronie nie jest zaznaczalny, a obrazy nie da się przeciągać. Pola formularzy i czatu zostają zwykłe. */
+body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+input, textarea, select, [contenteditable="true"] { -webkit-user-select: text; user-select: text; }
+img, svg, picture { -webkit-user-drag: none; user-drag: none; }
+
+/* Karuzela: więcej miejsca pod kartą, żeby cień i rozmyte sąsiednie karty nie nachodziły na kropki */
+.carousel__track { padding-top: 34px; padding-bottom: 64px; }
+.carousel__dots { margin-top: 2px; padding-bottom: 4px; }
+.svc-card { box-shadow: 0 10px 24px rgba(14, 13, 11, .14); }
+.svc-card:hover { box-shadow: 0 14px 30px rgba(14, 13, 11, .2); }
