@@ -543,7 +543,7 @@ h2.section-title { font-size: clamp(2rem, 4.2vw, 3.4rem); font-weight: 800; lett
 .picker .insight__tip { max-width: 640px; }
 .picker .insight__tip p { font-size: clamp(1.15rem, 2vw, 1.45rem); font-weight: 600; line-height: 1.3; }
 .examples { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 0; }
-.examples + .example .tabs { margin-top: 28px; }
+.examples + .pex .tabs { margin-top: 28px; }
 .pick-hint { color: var(--muted); }
 .picker .insight__tip .pick-label { font-size: .76rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
 .picker .insight__tip .pick-idea { margin: 0 0 12px; }

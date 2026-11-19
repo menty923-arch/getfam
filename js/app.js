@@ -201,7 +201,7 @@
       });
     }
   }
-  var examples = $$('.example');
+  var examples = $$('.pex');
   examples.forEach(initExample);
 
   // przełącznik przykładów
