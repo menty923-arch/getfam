@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>O projekcie – GETFAM</title>
+  <meta name="description" content="Model biznesowy GETFAM w skrócie: B2C i B2B, grupa docelowa, rola opiekuna, prowizja, promocja organiczna, zasoby i dostęp do statystyk.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0b0b'/%3E%3Cpath d='M16 3c1 8 5 12 13 13-8 1-12 5-13 13-1-8-5-12-13-13 8-1 12-5 13-13z' fill='%23c8f31d'/%3E%3C/svg%3E">
+  <script>
+    (function () {
+      var h = document.documentElement;
+      h.classList.add('js');
+      var t = null;
+      try { t = localStorage.getItem('getfam-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+      h.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+
+  <header class="site-header on-dark">
+    <div class="container">
+      <a class="logo" href="index.html" aria-label="GETFAM – strona główna">
+        <svg class="logo__star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 0c.8 7 5 11.2 12 12-7 .8-11.2 5-12 12-.8-7-5-11.2-12-12 7-.8 11.2-5 12-12z"/></svg>GETFAM
+      </a>
+      <div class="header-right">
+        <nav class="site-nav" id="menu" aria-label="Główna nawigacja">
+          <ul>
+            <li><a href="index.html#oferta">Jak pracujemy</a></li>
+            <li><a href="index.html#marki">Dla marek</a></li>
+            <li><a href="index.html#kontakt">Kontakt</a></li>
+          </ul>
+        </nav>
+        <button class="theme-toggle" type="button" id="theme-toggle" aria-pressed="false" aria-label="Ciemny motyw" title="Przełącz motyw jasny / ciemny">
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero on-dark">
+      <div class="container">
+        <p class="eyebrow">Dla prowadzącego</p>
+        <h1>O projekcie: <span class="accent">model biznesowy GETFAM</span></h1>
+        <p>GETFAM to koncepcyjna agencja dla początkujących twórców internetowych. Ta strona zbiera najważniejsze założenia modelu w jednym miejscu.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="doc-section" aria-labelledby="h-model">
+        <div class="doc-grid">
+          <h2 id="h-model">Model w skrócie</h2>
+          <div class="doc-body">
+            <p>Model niszowy: agencja obsługuje osoby, które chcą zostać twórcami albo rozwinąć istniejący profil. Zarabia na prowizji od przychodów, które klient wygeneruje dzięki współpracy.</p>
+            <div class="cols-2">
+              <div class="box">
+                <h3>B2C – twórcy</h3>
+                <p>Każda osoba, która podpisze umowę, dostaje opiekuna. Opiekun pomaga w planowaniu publikacji, statystykach i współpracach.</p>
+              </div>
+              <div class="box">
+                <h3>B2B – marki</h3>
+                <p>Mamy bazę firm małych, średnich i dużych, którym szukamy twórców do kampanii. Nasi partnerzy: CeraVe, War Thunder, Lipton, G2A, KFC, InPost, Shein, Temu, Zalando.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="h-target">
+        <div class="doc-grid">
+          <h2 id="h-target">Grupa docelowa</h2>
+          <div class="doc-body">
+            <p>Osoby od 16. roku życia z całej Polski, które chcą zostać twórcami lub zwiększyć zasięgi. Pomagamy im rozwijać się szybciej i łatwiej niż w pojedynkę.</p>
+            <p class="assumption">Założenie: przy osobach niepełnoletnich umowa wymaga zgody przedstawiciela ustawowego.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="h-guardian">
+        <div class="doc-grid">
+          <h2 id="h-guardian">Rola opiekuna</h2>
+          <div class="doc-body">
+            <p>Opiekun to osoba z zespołu, przydzielona twórcy po podpisaniu umowy. Opiekun:</p>
+            <ul>
+              <li>planuje z twórcą publikacje,</li>
+              <li>tłumaczy statystyki i wskazuje, co zmienić,</li>
+              <li>pomaga w pierwszych współpracach z markami,</li>
+              <li>korzysta z doświadczenia byłych twórców i analiz wspieranych narzędziami AI.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="h-revenue">
+        <div class="doc-grid">
+          <h2 id="h-revenue">Jak zarabiamy</h2>
+          <div class="doc-body">
+            <p>Pobieramy prowizję od przychodów objętych umową, czyli od tego, co kanał twórcy zarabia w zakresie, który ustalono z agencją. Wysokość prowizji i zakres przychodów określa umowa. Dlatego agencja potrzebuje wglądu w przychody tych kanałów.</p>
+            <p>Po stronie B2B zarabiamy na prowadzeniu kampanii dla marek.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="h-promo">
+        <div class="doc-grid">
+          <h2 id="h-promo">Promocja organiczna</h2>
+          <div class="doc-body">
+            <p>Reklamujemy się bez płatnych kampanii, przez twórców, z którymi współpracujemy:</p>
+            <ul>
+              <li>polecenia od twórców korzystających z usług agencji,</li>
+              <li>wzmianka o GETFAM w bio, np. na Instagramie,</li>
+              <li>filmy w barterze: twórca promuje agencję, a agencja w zamian pomaga mu w mediach społecznościowych.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="h-relation">
+        <div class="doc-grid">
+          <h2 id="h-relation">Relacja z klientem</h2>
+          <div class="doc-body">
+            <p>Bezpośrednia po podpisaniu umowy: klient rozmawia ze swoim opiekunem. Wcześniej kontakt przebiega automatycznie, przez stronę internetową i formularz.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="h-resources">
+        <h2 id="h-resources" style="margin-bottom:24px;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900">Zasoby</h2>
+        <div class="cols-3">
+          <div class="box">
+            <h3>Fizyczne</h3>
+            <ul>
+              <li>serwerownia (utrzymanie strony internetowej)</li>
+              <li>siedziba</li>
+              <li>samochody służbowe</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>Ludzkie</h3>
+            <ul>
+              <li>agenci marketingowi</li>
+              <li>technik od strony internetowej</li>
+              <li>prawnik</li>
+              <li>osoba od PR</li>
+              <li>recepcjonistka</li>
+              <li>osoba sprzątająca</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>Intelektualne</h3>
+            <ul>
+              <li>sposób prowadzenia konta w mediach społecznościowych</li>
+              <li>logo firmy</li>
+              <li>dane osobowe klientów</li>
+              <li>statystyki klientów</li>
+              <li>analiza rynkowa</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" aria-labelledby="h-access" style="border-bottom:0">
+        <h2 id="h-access" style="margin-bottom:8px;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900">Do czego potrzebujemy dostępu</h2>
+        <p class="muted">Tylko w zakresie uzgodnionym z klientem i zapisanym w umowie.</p>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr><th scope="col">Dostęp</th><th scope="col">Do czego go używamy</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Statystyki z mediów społecznościowych: wiek i lokalizacja odbiorców, źródła ruchu, wyświetlenia</th><td>Analiza, rekomendacje dla twórcy i dopasowanie twórców do kampanii marek.</td></tr>
+              <tr><th scope="row">Dane o przychodach kanału</th><td>Rozliczenie prowizji od przychodów objętych umową.</td></tr>
+              <tr><th scope="row">Komentarze pod publikacjami</th><td>Moderacja według zasad ustalonych z twórcą.</td></tr>
+              <tr><th scope="row">Posty do edycji</th><td>Skracanie, napisy i poprawki opisów, a publikuje twórca.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer on-dark">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="logo" href="index.html" aria-label="GETFAM – strona główna">
+            <svg class="logo__star" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 0c.8 7 5 11.2 12 12-7 .8-11.2 5-12 12-.8-7-5-11.2-12-12 7-.8 11.2-5 12-12z"/></svg>GETFAM<span class="logo__tag">Social media / Video / Ads</span>
+          </a>
+        </div>
+        <div>
+          <h2>Strona</h2>
+          <ul>
+            <li><a href="index.html#audyt">Dla twórców</a></li>
+            <li><a href="index.html#oferta">Oferta</a></li>
+            <li><a href="index.html#marki">Dla marek</a></li>
+            <li><a href="index.html#kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Projekt</h2>
+          <ul>
+            <li><a href="o-projekcie.html" aria-current="page">O projekcie</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-note">Strona powstała na potrzeby projektu semestralnego. GETFAM jest agencją koncepcyjną. Formularze działają w trybie demonstracyjnym.</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
