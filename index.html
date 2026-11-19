@@ -17,7 +17,7 @@
       if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) h.classList.add('intro');
     })();
   </script>
-  <link rel="stylesheet" href="css/style.css?v=20261119h">
+  <link rel="stylesheet" href="css/style.css?v=20261119j">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -79,12 +79,10 @@
       <div class="container">
         <div class="profile__head">
           <h2 class="profile__title" id="profile-title">Twój profil pod lupą</h2>
-          <span class="profile__tag">Dwa przykłady</span>
-        </div>
-
-        <div class="examples" role="group" aria-label="Wybierz przykład profilu">
+          <div class="examples" role="group" aria-label="Wybierz przykład profilu">
           <button class="chip" type="button" data-ex="food" aria-pressed="true">Profil kulinarny</button>
           <button class="chip" type="button" data-ex="game" aria-pressed="false">Profil gamingowy</button>
+          </div>
         </div>
 
         <div class="pex" id="ex-food">
@@ -593,6 +591,6 @@
     </button>
   </div>
 
-  <script src="js/app.js?v=20261119h"></script>
+  <script src="js/app.js?v=20261119j"></script>
 </body>
 </html>

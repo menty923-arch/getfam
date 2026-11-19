@@ -594,3 +594,18 @@ h2.section-title { font-size: clamp(2rem, 4.2vw, 3.4rem); font-weight: 800; lett
 .rv { opacity: 0; transform: translateY(18px); }
 .rv.is-in { opacity: 1; transform: none; transition: opacity .6s ease-out var(--rv-d, 0ms), transform .6s cubic-bezier(.2, .7, .2, 1) var(--rv-d, 0ms); }
 @media print { .rv { opacity: 1; transform: none; } }
+
+/* Profil pod lupą: spokojniejszy układ */
+.profile__head { justify-content: space-between; gap: 14px 24px; }
+.examples { margin: 0; gap: 6px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; }
+.examples .chip { min-height: 36px; padding: 6px 16px; font-size: .88rem; border-color: transparent; }
+.profile .tabs { gap: 26px; margin: 22px 0 26px; border-bottom: 1px solid var(--line); }
+.profile .tab { min-height: 0; padding: 10px 2px 12px; border: 0; border-bottom: 3px solid transparent; border-radius: 0; background: transparent; color: var(--muted); font-size: 1.02rem; margin-bottom: -1px; }
+.profile .tab:hover { background: transparent; color: var(--ink); }
+.profile .tab[aria-selected="true"] { background: transparent; color: var(--ink); border-color: var(--lime); }
+.profile .panel__q { font-size: clamp(1.5rem, 2.6vw, 2.15rem); margin-bottom: 24px; max-width: 24em; }
+@media (min-width: 800px) { .profile .case { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 36px; } }
+.profile .case__shot { aspect-ratio: 16 / 10; min-height: 0; max-height: 320px; }
+.profile .case__rec { padding: clamp(20px, 2.4vw, 30px); }
+@media (min-width: 800px) { .profile .case { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; } }
+.profile .case__shot { aspect-ratio: 4 / 3; max-height: 440px; }
