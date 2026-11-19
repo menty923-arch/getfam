@@ -120,7 +120,8 @@
       ['.contact-grid > div:first-child, .form-card', 1],
       ['.page-hero .container > *', 1],
       ['.doc-section .doc-grid, .doc-section > h2, .doc-section .box, .data-table', 1],
-      ['.footer-grid > div, .footer-note', 1]
+      ['.footer-grid > div, .footer-note', 1],
+      ['.pj-anim', 1]
     ];
     var rvObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
@@ -760,4 +761,48 @@
       (ctrl && !isField(e.target) && (k === 'a' || k === 'c' || k === 'x'));
     if (block) { e.preventDefault(); e.stopPropagation(); }
   }, true);
+})();
+
+/* O projekcie: mapa modelu, spis z podświetleniem, oś relacji i zasoby */
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var map = $('#pj-map');
+  if (!map) return;
+
+  var nodes = $$('.pj-node', map), panels = $$('.pj-detail__panel');
+  nodes.forEach(function (n) {
+    n.addEventListener('click', function () {
+      nodes.forEach(function (x) { var on = x === n; x.classList.toggle('is-on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      panels.forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== n.getAttribute('data-node'); });
+    });
+  });
+
+  var tabs = $$('.pj-res__tabs .chip'), lists = $$('.pj-res__list');
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      tabs.forEach(function (x) { x.setAttribute('aria-pressed', x === t ? 'true' : 'false'); });
+      lists.forEach(function (l) { l.hidden = l.getAttribute('data-list') !== t.getAttribute('data-res'); });
+    });
+  });
+
+  // spis: podświetla sekcję, która jest teraz na ekranie
+  var links = $$('#pj-spis a');
+  var secs = links.map(function (a) { return $(a.getAttribute('href')); });
+  var time = $('#pj-time'), steps = time ? $$('li', time) : [];
+  var tick = function () {
+    var y = window.innerHeight * 0.35, cur = -1;
+    secs.forEach(function (s, i) { if (s && s.getBoundingClientRect().top <= y) cur = i; });
+    links.forEach(function (a, i) { a.classList.toggle('is-on', i === cur); });
+    if (time) {
+      var r = time.getBoundingClientRect();
+      var p = Math.max(0, Math.min(1, (window.innerHeight * 0.65 - r.top) / Math.max(1, r.height + 40)));
+      time.style.setProperty('--p', p.toFixed(3));
+      steps.forEach(function (li, i) { li.classList.toggle('is-on', p >= i / Math.max(1, steps.length - 1) - 0.02 && p > 0.02); });
+    }
+  };
+  window.addEventListener('scroll', function () { window.requestAnimationFrame(tick); }, { passive: true });
+  window.addEventListener('resize', tick);
+  tick();
 })();

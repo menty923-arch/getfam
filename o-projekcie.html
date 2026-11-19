@@ -16,7 +16,7 @@
       h.setAttribute('data-theme', t);
     })();
   </script>
-  <link rel="stylesheet" href="css/style.css?v=20261120v">
+  <link rel="stylesheet" href="css/style.css?v=20261120w">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -43,146 +43,178 @@
     </div>
   </header>
 
-  <main id="main">
-    <section class="page-hero on-dark">
+    <main id="main" class="pj">
+    <!-- HERO + MAPA MODELU -->
+    <section class="pj-hero on-dark" aria-labelledby="pj-title">
       <div class="container">
-        <p class="eyebrow">Dla prowadzącego</p>
-        <h1>O projekcie: <span class="accent">model biznesowy GETFAM</span></h1>
-        <p>GETFAM to koncepcyjna agencja dla początkujących twórców internetowych. Ta strona zbiera najważniejsze założenia modelu w jednym miejscu.</p>
+        <p class="eyebrow">Dla prowadzącego · projekt semestralny</p>
+        <h1 id="pj-title"><span>Model</span> <span>biznesowy</span> <span class="accent">GETFAM</span></h1>
+        <p class="pj-lead">Agencja, która łączy młodych twórców z markami i zarabia wtedy, gdy twórcy rosną.</p>
+
+        <div class="pj-map" id="pj-map">
+          <button class="pj-node is-on" type="button" data-node="b2c" aria-pressed="true">
+            <span class="pj-node__tag">B2C</span>
+            <span class="pj-node__name">Twórcy 16+</span>
+            <span class="pj-node__sub">klienci indywidualni</span>
+          </button>
+          <div class="pj-link" aria-hidden="true">
+            <div class="pj-track pj-track--fwd"><i></i><span>prowizja od przychodów</span></div>
+            <div class="pj-track pj-track--back"><i></i><span>opiekun i plan</span></div>
+          </div>
+          <button class="pj-node pj-node--core" type="button" data-node="core" aria-pressed="false">
+            <span class="pj-node__tag">Agencja</span>
+            <span class="pj-node__name">GETFAM</span>
+            <span class="pj-node__sub">opiekun przy każdym twórcy</span>
+          </button>
+          <div class="pj-link" aria-hidden="true">
+            <div class="pj-track pj-track--fwd"><i></i><span>twórcy do kampanii</span></div>
+            <div class="pj-track pj-track--back"><i></i><span>opłata za kampanię</span></div>
+          </div>
+          <button class="pj-node" type="button" data-node="b2b" aria-pressed="false">
+            <span class="pj-node__tag">B2B</span>
+            <span class="pj-node__name">Marki</span>
+            <span class="pj-node__sub">małe, średnie i duże firmy</span>
+          </button>
+        </div>
+
+        <div class="pj-detail" id="pj-detail" aria-live="polite">
+          <div class="pj-detail__panel" data-panel="b2c">
+            <h2>Twórcy (B2C)</h2>
+            <p>Osoby, które chcą zostać twórcami albo rozwinąć profil. Po podpisaniu umowy każdy dostaje opiekuna.</p>
+          </div>
+          <div class="pj-detail__panel" data-panel="core" hidden>
+            <h2>GETFAM</h2>
+            <p>Model niszowy: obsługujemy twórców i prowadzimy kampanie dla marek. Zarabiamy na prowizji i na kampaniach.</p>
+          </div>
+          <div class="pj-detail__panel" data-panel="b2b" hidden>
+            <h2>Marki (B2B)</h2>
+            <p>Baza firm, którym szukamy twórców do kampanii. Przykładowe marki z biznesplanu: CeraVe, War Thunder, Lipton, G2A, KFC, InPost, Shein, Temu, Zalando.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <div class="container">
-      <section class="doc-section" aria-labelledby="h-model">
-        <div class="doc-grid">
-          <h2 id="h-model">Model w skrócie</h2>
-          <div class="doc-body">
-            <p>Model niszowy: agencja obsługuje osoby, które chcą zostać twórcami albo rozwinąć istniejący profil. Zarabia na prowizji od przychodów, które klient wygeneruje dzięki współpracy.</p>
-            <div class="cols-2">
-              <div class="box">
-                <h3>B2C – twórcy</h3>
-                <p>Każda osoba, która podpisze umowę, dostaje opiekuna. Opiekun pomaga w planowaniu publikacji, statystykach i współpracach.</p>
-              </div>
-              <div class="box">
-                <h3>B2B – marki</h3>
-                <p>Mamy bazę firm małych, średnich i dużych, którym szukamy twórców do kampanii. Przykładowe marki z biznesplanu: CeraVe, War Thunder, Lipton, G2A, KFC, InPost, Shein, Temu, Zalando. Główny przykład kampanii to premiera gry: dobieramy twórcę gamingowego, którego odbiorcy mają 16–24 lat i mieszkają w Polsce (<a href="index.html#marki">zobacz brief</a>).</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <!-- SPIS (podświetla się podczas przewijania) -->
+    <nav class="pj-spis" id="pj-spis" aria-label="Spis treści">
+      <div class="container">
+        <a href="#pj-grupa">Grupa</a>
+        <a href="#pj-opiekun">Opiekun</a>
+        <a href="#pj-zarobek">Zarobek</a>
+        <a href="#pj-promocja">Promocja</a>
+        <a href="#pj-relacja">Relacja</a>
+        <a href="#pj-zasoby">Zasoby</a>
+        <a href="#pj-dostep">Dostęp</a>
+      </div>
+    </nav>
 
-      <section class="doc-section" aria-labelledby="h-target">
-        <div class="doc-grid">
-          <h2 id="h-target">Grupa docelowa</h2>
-          <div class="doc-body">
-            <p>Osoby od 16. roku życia z całej Polski, które chcą zostać twórcami lub zwiększyć zasięgi. Pomagamy im rozwijać się szybciej i łatwiej niż w pojedynkę.</p>
-            <p class="assumption">Założenie: przy osobach niepełnoletnich umowa wymaga zgody przedstawiciela ustawowego.</p>
-          </div>
+    <!-- GRUPA DOCELOWA -->
+    <section class="pj-sec" id="pj-grupa" aria-labelledby="h-grupa">
+      <div class="container pj-split">
+        <div class="pj-anim pj-big" aria-hidden="true">16<span>+</span></div>
+        <div>
+          <p class="pj-kicker pj-anim">Grupa docelowa</p>
+          <h2 class="pj-anim" id="h-grupa">Od 16. roku życia, z całej Polski</h2>
+          <p class="pj-anim">Osoby, które chcą zostać twórcami lub zwiększyć zasięgi. Pomagamy im rosnąć szybciej niż w pojedynkę.</p>
+          <p class="assumption pj-anim">Założenie: przy osobach niepełnoletnich umowa wymaga zgody przedstawiciela ustawowego.</p>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="doc-section" aria-labelledby="h-guardian">
-        <div class="doc-grid">
-          <h2 id="h-guardian">Rola opiekuna</h2>
-          <div class="doc-body">
-            <p>Opiekun to osoba z zespołu, przydzielona twórcy po podpisaniu umowy. Opiekun:</p>
-            <ul>
-              <li>planuje z twórcą publikacje,</li>
-              <li>tłumaczy statystyki i wskazuje, co zmienić,</li>
-              <li>pomaga w pierwszych współpracach z markami,</li>
-              <li>korzysta z doświadczenia byłych twórców i analiz wspieranych narzędziami AI.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+    <!-- ROLA OPIEKUNA -->
+    <section class="pj-sec pj-sec--tint" id="pj-opiekun" aria-labelledby="h-opiekun">
+      <div class="container">
+        <p class="pj-kicker pj-anim">Rola opiekuna</p>
+        <h2 class="pj-anim" id="h-opiekun">Każdy twórca dostaje opiekuna</h2>
+        <p class="pj-sub pj-anim">Osoba z zespołu, przydzielona po podpisaniu umowy.</p>
+        <ul class="pj-cards pj-cards--4">
+          <li class="pj-anim"><b>Planuje</b><span>publikacje razem z twórcą</span></li>
+          <li class="pj-anim"><b>Tłumaczy</b><span>statystyki i wskazuje, co zmienić</span></li>
+          <li class="pj-anim"><b>Pomaga</b><span>w pierwszych współpracach z markami</span></li>
+          <li class="pj-anim"><b>Korzysta</b><span>z doświadczenia byłych twórców i analiz wspieranych AI</span></li>
+        </ul>
+      </div>
+    </section>
 
-      <section class="doc-section" aria-labelledby="h-revenue">
-        <div class="doc-grid">
-          <h2 id="h-revenue">Jak zarabiamy</h2>
-          <div class="doc-body">
-            <p>Pobieramy prowizję od przychodów objętych umową, czyli od tego, co kanał twórcy zarabia w zakresie, który ustalono z agencją. Wysokość prowizji i zakres przychodów określa umowa. Dlatego agencja potrzebuje wglądu w przychody tych kanałów.</p>
-            <p>Po stronie B2B zarabiamy na prowadzeniu kampanii dla marek.</p>
-          </div>
-        </div>
-      </section>
+    <!-- JAK ZARABIAMY -->
+    <section class="pj-sec" id="pj-zarobek" aria-labelledby="h-zarobek">
+      <div class="container">
+        <p class="pj-kicker pj-anim">Jak zarabiamy</p>
+        <h2 class="pj-anim" id="h-zarobek">Prowizja od przychodów objętych umową</h2>
+        <ol class="pj-chain pj-anim">
+          <li><b>Kanał twórcy zarabia</b><span>w zakresie ustalonym z agencją</span></li>
+          <li><b>Umowa</b><span>określa zakres przychodów i wysokość prowizji</span></li>
+          <li><b>GETFAM</b><span>pobiera prowizję, dlatego potrzebuje wglądu w te przychody</span></li>
+        </ol>
+        <p class="pj-note pj-anim">Po stronie B2B zarabiamy na prowadzeniu kampanii dla marek.</p>
+      </div>
+    </section>
 
-      <section class="doc-section" aria-labelledby="h-promo">
-        <div class="doc-grid">
-          <h2 id="h-promo">Promocja organiczna</h2>
-          <div class="doc-body">
-            <p>Reklamujemy się bez płatnych kampanii, przez twórców, z którymi współpracujemy:</p>
-            <ul>
-              <li>polecenia od twórców korzystających z usług agencji,</li>
-              <li>wzmianka o GETFAM w bio, np. na Instagramie,</li>
-              <li>filmy w barterze: twórca promuje agencję, a agencja w zamian pomaga mu w mediach społecznościowych.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+    <!-- PROMOCJA ORGANICZNA -->
+    <section class="pj-sec pj-sec--dark on-dark" id="pj-promocja" aria-labelledby="h-promocja">
+      <div class="container">
+        <p class="pj-kicker pj-anim">Promocja organiczna</p>
+        <h2 class="pj-anim" id="h-promocja">Bez płatnych kampanii, przez twórców</h2>
+        <ul class="pj-cards pj-cards--3 pj-cards--dark">
+          <li class="pj-anim"><b>Polecenia</b><span>od twórców korzystających z usług agencji</span></li>
+          <li class="pj-anim"><b>Wzmianka w bio</b><span>o GETFAM, np. na Instagramie</span></li>
+          <li class="pj-anim"><b>Barter</b><span>twórca promuje agencję, a agencja pomaga mu w mediach społecznościowych</span></li>
+        </ul>
+      </div>
+    </section>
 
-      <section class="doc-section" aria-labelledby="h-relation">
-        <div class="doc-grid">
-          <h2 id="h-relation">Relacja z klientem</h2>
-          <div class="doc-body">
-            <p>Bezpośrednia po podpisaniu umowy: klient rozmawia ze swoim opiekunem. Wcześniej kontakt przebiega automatycznie, przez stronę internetową i formularz.</p>
-          </div>
+    <!-- RELACJA Z KLIENTEM -->
+    <section class="pj-sec" id="pj-relacja" aria-labelledby="h-relacja">
+      <div class="container">
+        <p class="pj-kicker pj-anim">Relacja z klientem</p>
+        <h2 class="pj-anim" id="h-relacja">Najpierw automat, potem człowiek</h2>
+        <div class="pj-time" id="pj-time">
+          <div class="pj-time__line" aria-hidden="true"><i></i></div>
+          <ol>
+            <li><span class="pj-time__dot" aria-hidden="true"></span><b>Strona i formularz</b><span>Kontakt przebiega automatycznie.</span></li>
+            <li><span class="pj-time__dot" aria-hidden="true"></span><b>Umowa</b><span>Klient podpisuje umowę z agencją.</span></li>
+            <li><span class="pj-time__dot" aria-hidden="true"></span><b>Opiekun</b><span>Bezpośrednia rozmowa ze swoim opiekunem.</span></li>
+          </ol>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="doc-section" aria-labelledby="h-resources">
-        <h2 id="h-resources" style="margin-bottom:24px;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900">Zasoby</h2>
-        <div class="cols-3">
-          <div class="box">
-            <h3>Fizyczne</h3>
-            <ul>
-              <li>serwerownia (utrzymanie strony internetowej)</li>
-              <li>siedziba</li>
-              <li>samochody służbowe</li>
-            </ul>
+    <!-- ZASOBY -->
+    <section class="pj-sec pj-sec--tint" id="pj-zasoby" aria-labelledby="h-zasoby">
+      <div class="container">
+        <p class="pj-kicker pj-anim">Zasoby</p>
+        <h2 class="pj-anim" id="h-zasoby">Na czym opiera się agencja</h2>
+        <div class="pj-res" id="pj-res">
+          <div class="pj-res__tabs" role="group" aria-label="Rodzaj zasobów">
+            <button class="chip" type="button" data-res="phys" aria-pressed="true">Fizyczne</button>
+            <button class="chip" type="button" data-res="hum" aria-pressed="false">Ludzkie</button>
+            <button class="chip" type="button" data-res="int" aria-pressed="false">Intelektualne</button>
           </div>
-          <div class="box">
-            <h3>Ludzkie</h3>
-            <ul>
-              <li>agenci marketingowi</li>
-              <li>technik od strony internetowej</li>
-              <li>prawnik</li>
-              <li>osoba od PR</li>
-              <li>recepcjonistka</li>
-              <li>osoba sprzątająca</li>
-            </ul>
-          </div>
-          <div class="box">
-            <h3>Intelektualne</h3>
-            <ul>
-              <li>sposób prowadzenia konta w mediach społecznościowych</li>
-              <li>logo firmy</li>
-              <li>dane osobowe klientów</li>
-              <li>statystyki klientów</li>
-              <li>analiza rynkowa</li>
-            </ul>
-          </div>
+          <ul class="pj-res__list" data-list="phys">
+            <li>serwerownia (utrzymanie strony internetowej)</li><li>siedziba</li><li>samochody służbowe</li>
+          </ul>
+          <ul class="pj-res__list" data-list="hum" hidden>
+            <li>agenci marketingowi</li><li>technik od strony internetowej</li><li>prawnik</li><li>osoba od PR</li><li>recepcjonistka</li><li>osoba sprzątająca</li>
+          </ul>
+          <ul class="pj-res__list" data-list="int" hidden>
+            <li>sposób prowadzenia konta w mediach społecznościowych</li><li>logo firmy</li><li>dane osobowe klientów</li><li>statystyki klientów</li><li>analiza rynkowa</li>
+          </ul>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="doc-section" aria-labelledby="h-access" style="border-bottom:0">
-        <h2 id="h-access" style="margin-bottom:8px;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900">Do czego potrzebujemy dostępu</h2>
-        <p class="muted">Tylko w zakresie uzgodnionym z klientem i zapisanym w umowie.</p>
-        <div class="table-scroll">
-          <table class="data-table">
-            <thead>
-              <tr><th scope="col">Dostęp</th><th scope="col">Do czego go używamy</th></tr>
-            </thead>
-            <tbody>
-              <tr><th scope="row">Statystyki z mediów społecznościowych: wiek i lokalizacja odbiorców, źródła ruchu, wyświetlenia</th><td>Analiza, rekomendacje dla twórcy i dopasowanie twórców do kampanii marek.</td></tr>
-              <tr><th scope="row">Dane o przychodach kanału</th><td>Rozliczenie prowizji od przychodów objętych umową.</td></tr>
-              <tr><th scope="row">Komentarze pod publikacjami</th><td>Moderacja według zasad ustalonych z twórcą.</td></tr>
-              <tr><th scope="row">Posty do edycji</th><td>Skracanie, napisy i poprawki opisów, a publikuje twórca.</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-    </div>
+    <!-- DOSTĘP -->
+    <section class="pj-sec" id="pj-dostep" aria-labelledby="h-dostep">
+      <div class="container">
+        <p class="pj-kicker pj-anim">Dostęp do danych</p>
+        <h2 class="pj-anim" id="h-dostep">Tylko w zakresie zapisanym w umowie</h2>
+        <ul class="pj-access">
+          <li class="pj-anim"><b>Statystyki z mediów społecznościowych</b><span class="pj-access__what">wiek i lokalizacja odbiorców, źródła ruchu, wyświetlenia</span><span class="pj-access__why">Analiza, rekomendacje i dopasowanie twórców do kampanii.</span></li>
+          <li class="pj-anim"><b>Dane o przychodach kanału</b><span class="pj-access__what">wpływy objęte umową</span><span class="pj-access__why">Rozliczenie prowizji.</span></li>
+          <li class="pj-anim"><b>Komentarze pod publikacjami</b><span class="pj-access__what">dostęp do komentarzy</span><span class="pj-access__why">Moderacja według zasad ustalonych z twórcą.</span></li>
+          <li class="pj-anim"><b>Posty do edycji</b><span class="pj-access__what">materiały przed publikacją</span><span class="pj-access__why">Skracanie, napisy, poprawki opisów. Publikuje twórca.</span></li>
+        </ul>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer on-dark">
@@ -234,6 +266,6 @@
     </button>
   </div>
 
-  <script src="js/app.js?v=20261120v"></script>
+  <script src="js/app.js?v=20261120w"></script>
 </body>
 </html>
