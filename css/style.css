@@ -230,31 +230,18 @@ h2.section-title { font-size: clamp(2rem, 4.2vw, 3.4rem); font-weight: 800; lett
   88%, 100% { opacity: 0; transform: translate(var(--dx), var(--dy)); }
 }
 
-/* Błysk przy zewnętrznym narożniku zdjęcia: cząstki zbiegają się w gwiazdkę GETFAM i gasną (raz, ok. 900 ms).
-   Bez klasy .intro (ograniczony ruch) zostaje statyczna gwiazdka. Warstwa nie przechwytuje kliknięć. */
-.spark { position: absolute; z-index: 0; top: clamp(20px, 5%, 52px); right: clamp(18px, 2.6vw, 44px); width: 52px; height: 52px; pointer-events: none; }
-.spark__star { position: absolute; inset: 0; width: 100%; height: 100%; fill: var(--lime); opacity: .9; }
-.spark i { position: absolute; left: 50%; top: 50%; width: 5px; height: 5px; margin: -2.5px 0 0 -2.5px; border-radius: 50%; background: #fff3d6; box-shadow: 0 0 6px rgba(255, 236, 190, .8); opacity: 0; display: none; }
-.intro .spark i { display: block; animation: spark-in .62s cubic-bezier(.4, 0, .2, 1) .35s both; }
-.intro .spark__star { opacity: 0; animation: spark-flash .5s ease-out .85s both; }
-.spark i:nth-child(1) { --sx: calc(-26px * 2); --sy: calc(-10px * 2); }
-.spark i:nth-child(2) { --sx: calc(22px * 2); --sy: calc(-18px * 2); width: 3px; height: 3px; }
-.spark i:nth-child(3) { --sx: calc(-14px * 2); --sy: calc(24px * 2); }
-.spark i:nth-child(4) { --sx: calc(18px * 2); --sy: calc(22px * 2); width: 3px; height: 3px; }
-.spark i:nth-child(5) { --sx: calc(-4px * 2); --sy: calc(-28px * 2); }
-.spark i:nth-child(6) { --sx: calc(30px * 2); --sy: calc(4px * 2); width: 3px; height: 3px; }
-.spark i:nth-child(7) { --sx: calc(-30px * 2); --sy: calc(12px * 2); width: 3px; height: 3px; }
-@media (max-width: 739px) { .spark i:nth-child(n+4) { display: none !important; } .spark { right: 20px; top: 20px; } }
-@keyframes spark-in {
-  0% { opacity: 0; transform: translate(var(--sx), var(--sy)); }
-  30% { opacity: .85; }
-  100% { opacity: 0; transform: translate(0, 0); }
-}
-@keyframes spark-flash {
-  0% { opacity: 0; transform: scale(.2) rotate(-20deg); }
-  40% { opacity: 1; transform: scale(1.25) rotate(0); }
-  100% { opacity: 0; transform: scale(.9); }
-}
+/* Gwiazdka-przycisk w narożniku zdjęcia: po kliknięciu leci z niej fala limonkowych cząstek przez cały pierwszy ekran (js/app.js). */
+.spark { position: absolute; z-index: 2; top: clamp(20px, 5%, 52px); right: clamp(18px, 2.6vw, 44px); width: 60px; height: 60px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; -webkit-tap-highlight-color: transparent; }
+.spark__star { width: 44px; height: 44px; fill: var(--lime); filter: drop-shadow(0 0 10px rgba(200, 243, 29, .55)); transition: transform .25s; }
+.spark:hover .spark__star { transform: scale(1.18) rotate(20deg); }
+.spark:active .spark__star { transform: scale(.85); }
+.spark:focus-visible { outline: 2px solid #fff; outline-offset: 2px; border-radius: 12px; }
+.spark__hint { position: absolute; right: 100%; top: 50%; transform: translateY(-50%); margin-right: 4px; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .8); white-space: nowrap; text-shadow: 0 1px 3px rgba(0, 0, 0, .7); }
+.intro .spark::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; border: 2px solid var(--lime); opacity: 0; animation: spark-ping 1.6s ease-out 1s 3 both; }
+@keyframes spark-ping { 0% { opacity: .8; transform: scale(.7); } 100% { opacity: 0; transform: scale(1.9); } }
+.spark-fx { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.spark-fx i { position: absolute; left: 0; top: 0; border-radius: 50%; will-change: transform, opacity; }
+@media (max-width: 739px) { .spark { width: 52px; height: 52px; top: 14px; right: 14px; } .spark__star { width: 38px; height: 38px; } .spark__hint { display: none; } }
 
 /* Akcent po ukończeniu audytu: trzy limonkowe drobiny */
 .result-head { display: flex; align-items: center; gap: 10px; }
