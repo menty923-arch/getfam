@@ -570,7 +570,7 @@
     }
 
     // Z przykładowego briefu: wybiera „Reprezentuję markę” i podpowiada opis kampanii.
-    var BRIEF_TEXT = 'Premiera gry (przykładowy brief): twórca gamingowy, odbiorcy 16–24 lata z Polski, platformy YouTube i TikTok, film z pierwszymi wrażeniami i dwa krótkie klipy, start 4 tygodnie przed premierą.';
+    var BRIEF_TEXT = 'Premiera gry (przykładowy brief): twórca gamingowy, odbiorcy 16–24 lat z Polski, platformy YouTube i TikTok, film z pierwszymi wrażeniami i dwa krótkie klipy, start 4 tygodnie przed premierą.';
     var briefCta = $('#brief-cta');
     if (briefCta) {
       briefCta.addEventListener('click', function () {
