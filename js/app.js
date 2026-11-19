@@ -587,3 +587,34 @@
     setRole('creator');
   }
 })();
+
+/* Czat-atrapa: na każdą wiadomość odpowiada „Przerwa techniczna”. Nic nie jest wysyłane. */
+(function () {
+  var toggle = document.getElementById('chat-toggle'), panel = document.getElementById('chat-panel');
+  if (!toggle || !panel) return;
+  var log = document.getElementById('chat-log'), form = document.getElementById('chat-form'), input = document.getElementById('chat-input');
+  function setOpen(open) {
+    panel.hidden = !open;
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Zamknij czat' : 'Otwórz czat');
+    if (open) input.focus(); else toggle.focus();
+  }
+  function add(text, me) {
+    var p = document.createElement('p');
+    p.className = 'chat__msg chat__msg--' + (me ? 'me' : 'bot');
+    p.textContent = text;
+    log.appendChild(p);
+    log.scrollTop = log.scrollHeight;
+  }
+  toggle.addEventListener('click', function () { setOpen(panel.hidden); });
+  document.getElementById('chat-close').addEventListener('click', function () { setOpen(false); });
+  panel.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var t = input.value.trim();
+    if (!t) return;
+    add(t, true);
+    input.value = '';
+    setTimeout(function () { add('Przerwa techniczna', false); }, 600);
+  });
+})();
