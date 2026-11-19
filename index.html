@@ -17,7 +17,7 @@
       if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) h.classList.add('intro');
     })();
   </script>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=20261119b">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
@@ -127,6 +127,15 @@
                 <button type="button" id="sw-after" data-view="after" aria-pressed="false">Po przesunięciu</button>
               </div>
               <p class="clip__caption" id="clip-caption" aria-live="polite">Gotowe danie pojawia się dopiero w 8. sekundzie.</p>
+
+              <div class="timeline" aria-hidden="true">
+                <div class="timeline__track">
+                  <div class="seg seg--cut"><img src="img/kadr-kanapka.svg" alt=""><span>Przekrojenie</span></div>
+                  <div class="seg seg--ing"><img src="img/kadr-skladniki.svg" alt=""><span>Składniki</span></div>
+                  <div class="seg seg--recipe"><span>Przepis</span></div>
+                </div>
+                <div class="timeline__ticks"><span>0:00</span><span>0:08</span><span>0:15</span></div>
+              </div>
 
               <figure class="retention">
                 <figcaption>Ile osób zostaje po 3 sekundach</figcaption>
@@ -480,6 +489,6 @@
     </button>
   </div>
 
-  <script src="js/app.js"></script>
+  <script src="js/app.js?v=20261119b"></script>
 </body>
 </html>
