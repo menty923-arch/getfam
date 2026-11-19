@@ -94,6 +94,20 @@
     }
   }
 
+  /* ---------- Oferta: kroki pojawiają się po kolei ---------- */
+  var steps3 = $('#steps3');
+  if (steps3) {
+    var showSteps = function () { steps3.classList.add('is-in'); };
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      showSteps();
+    } else {
+      var stepsObs = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) { showSteps(); stepsObs.disconnect(); }
+      }, { threshold: 0.3 });
+      stepsObs.observe(steps3);
+    }
+  }
+
   /* ---------- Motyw jasny / ciemny ---------- */
   var themeBtn = $('#theme-toggle');
   if (themeBtn) {

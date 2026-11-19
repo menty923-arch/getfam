@@ -569,3 +569,23 @@ h2.section-title { font-size: clamp(2rem, 4.2vw, 3.4rem); font-weight: 800; lett
   .step:not(:last-child)::after { left: 44px; right: calc(-24px + 0px); top: 21px; bottom: auto; width: auto; height: 2px; }
   .step__card { height: 100%; }
 }
+
+/* Oferta: wyrównane karty, efekt każdego kroku i wejście kroków po kolei */
+.step { grid-template-rows: auto 1fr; }
+.step__card { display: flex; flex-direction: column; }
+.step__out { margin: auto 0 0; padding-top: 16px; border-top: 1px solid var(--line); display: flex; gap: 10px; align-items: baseline; font-weight: 600; line-height: 1.35; }
+.step__out b { flex: none; font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.step__row:nth-of-type(2) { margin-bottom: 18px; }
+.step__num { box-shadow: 0 0 0 6px var(--paper-2); }
+@media (min-width: 860px) {
+  .step__num { width: 52px; height: 52px; font-size: 1.35rem; }
+  .step:not(:last-child)::after { left: 60px; top: 25px; transform-origin: left; }
+}
+.js .steps3 .step__card, .js .steps3 .step__num { opacity: 0; transform: translateY(14px); }
+.js .steps3 .step:not(:last-child)::after { transform: scaleX(0); transform-origin: left; }
+.js .steps3.is-in .step__card, .js .steps3.is-in .step__num { opacity: 1; transform: none; transition: opacity .5s ease-out, transform .5s ease-out; }
+.js .steps3.is-in .step:nth-child(2) .step__card, .js .steps3.is-in .step:nth-child(2) .step__num { transition-delay: .25s; }
+.js .steps3.is-in .step:nth-child(3) .step__card, .js .steps3.is-in .step:nth-child(3) .step__num { transition-delay: .5s; }
+.js .steps3.is-in .step:not(:last-child)::after { transform: none; transition: transform .6s ease-out .2s; }
+.js .steps3.is-in .step:nth-child(2)::after { transition-delay: .45s; }
+@media (prefers-reduced-motion: reduce) { .js .steps3 .step__card, .js .steps3 .step__num { opacity: 1; transform: none; } .js .steps3 .step:not(:last-child)::after { transform: none; } }
